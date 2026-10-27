@@ -1,0 +1,8 @@
+{
+  "name": "Văn hoá công sở & Giao tiếp chuyên nghiệp",
+  "description": "Nền tảng đào tạo văn hóa công sở, chuẩn mực ứng xử, thực hành tình huống giao tiếp và đánh giá kỹ năng chuyên nghiệp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

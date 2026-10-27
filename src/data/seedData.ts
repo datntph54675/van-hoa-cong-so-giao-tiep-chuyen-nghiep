@@ -1,0 +1,1381 @@
+import { Lesson, Scenario, QuizQuestion, QuizTopic, Badge, LeaderboardUser, UserProfile, UserAccount } from '../types';
+
+export const INITIAL_USERS: UserAccount[] = [
+  {
+    id: 'usr_admin_tuda2k4',
+    email: 'tuda2k4@gmail.com',
+    name: 'Nguyễn Tuấn Đạt',
+    birthDate: '2004-01-01',
+    phone: '0901234567',
+    gender: 'Nam',
+    role: 'Quản trị viên Hệ thống',
+    organizationType: 'Đơn vị sự nghiệp công lập',
+    organizationName: 'Hệ thống Đào tạo Văn hóa Công sở & Giao tiếp Chuyên nghiệp',
+    department: 'Ban Điều hành & Quản trị Hệ thống',
+    subUnit: 'Tổ Quản trị Nội dung & Phân tích AI',
+    workplaceAddress: 'Hà Nội',
+    city: 'Hà Nội',
+    experienceYears: '5 - 10 năm',
+    learningGoal: 'Đào tạo nhân viên',
+    avatarSeed: 'tuda2k4',
+    joinedDate: 'Tháng 10, 2026',
+    createdAt: '2026-10-22',
+    passwordSalt: '3b0ccf331b7c96cbda0ae0e4888b4393',
+    passwordHash: 'cb3172f771da21d02079e1de14ad96692ce4110f0665d84fb6b9656a4869d109',
+    isAdmin: true
+  },
+  {
+    id: 'usr_an_nguyen',
+    email: 'an.nguyen@congsochuyennghiep.vn',
+    name: 'Nguyễn Văn An',
+    birthDate: '1995-08-15',
+    phone: '0912345678',
+    gender: 'Nam',
+    role: 'Chuyên viên Phát triển Dự án',
+    organizationType: 'Doanh nghiệp nhà nước',
+    organizationName: 'Tập đoàn Công nghệ & Viễn thông Quốc gia',
+    department: 'Khối Vận hành & Dự án',
+    subUnit: 'Ban Quản lý Dự án Trọng điểm',
+    workplaceAddress: 'Số 18 Đường Hoàng Diệu, Phường Điện Biên, Quận Ba Đình',
+    city: 'Hà Nội',
+    experienceYears: '3 - 5 năm',
+    learningGoal: 'Nâng cao kỹ năng giao tiếp',
+    avatarSeed: 'an_nguyen',
+    joinedDate: 'Tháng 10, 2026',
+    createdAt: '2026-10-01',
+    passwordSalt: 'salt_an_nguyen_2026',
+    // Hash for "MatKhau@123" with salt_an_nguyen_2026
+    passwordHash: 'demo_hash_an_nguyen_matkhau123',
+    isAdmin: false
+  },
+  {
+    id: 'usr_mai_phuong',
+    email: 'mai.phuong@congsochuyennghiep.vn',
+    name: 'Trần Thị Mai Phương',
+    birthDate: '1992-04-20',
+    phone: '0987654321',
+    gender: 'Nữ',
+    role: 'Trưởng nhóm Dịch vụ Khách hàng',
+    organizationType: 'Doanh nghiệp tư nhân',
+    organizationName: 'Công ty Cổ phần Giải pháp Công nghệ Số',
+    department: 'Khối Quan hệ Khách hàng',
+    subUnit: 'Trung tâm Hỗ trợ Đối tác Doanh nghiệp',
+    workplaceAddress: 'Tòa nhà Landmark, 720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh',
+    city: 'TP. Hồ Chí Minh',
+    experienceYears: '5 - 10 năm',
+    learningGoal: 'Nâng cao kỹ năng quản lý',
+    avatarSeed: 'mai_phuong',
+    joinedDate: 'Tháng 09, 2026',
+    createdAt: '2026-09-15',
+    passwordSalt: 'salt_mai_phuong_2026',
+    passwordHash: 'demo_hash_mai_phuong_matkhau123',
+    isAdmin: false
+  }
+];
+
+export const INITIAL_PROFILE: UserProfile = INITIAL_USERS[0];
+
+export const INITIAL_LESSONS: Lesson[] = [
+  {
+    id: 'lesson-1',
+    order: 1,
+    category: 'Tổng quan về văn hoá công sở',
+    title: 'Bản chất và Tầm quan trọng của Văn hóa Doanh nghiệp',
+    summary: 'Hiểu rõ các tầng bậc văn hóa tổ chức, giá trị cốt lõi và cách mỗi cá nhân hòa nhập tích cực vào môi trường làm việc.',
+    estimatedMinutes: 12,
+    objectives: [
+      'Nắm vững khái niệm và 3 tầng bậc văn hóa tổ chức theo mô hình Edgar Schein.',
+      'Hiểu rõ sự khác biệt giữa quy định nội bộ và văn hóa hành vi vô hình.',
+      'Nhận diện vai trò của cá nhân trong việc gìn giữ và lan tỏa chuẩn mực ứng xử.'
+    ],
+    sections: [
+      {
+        title: '1. Khái niệm và Ba tầng bậc văn hóa',
+        content: 'Văn hóa công sở không chỉ là bảng khẩu hiệu hay đồng phục, mà là hệ thống giá trị, niềm tin và quy chuẩn hành vi được tập thể chia sẻ. Theo Edgar Schein, văn hóa gồm 3 tầng: Bề nổi (kiến trúc, trang phục, nghi lễ); Tầng giá trị được tuyên bố (tầm nhìn, chiến lược, quy tắc ứng xử); và Tầng giả định ngầm hiểu (niềm tin sâu xa về con người, công việc và sự tôn trọng).',
+        bulletPoints: [
+          'Tầng hữu hình: Cách bài trí văn phòng, tác phong chào hỏi, quy chuẩn giao tiếp thường nhật.',
+          'Tầng giá trị cam kết: Tính chính trực, tinh thần trách nhiệm, văn hóa hợp tác liên phòng ban.',
+          'Tầng giả định căn bản: Sự bình đẳng trong thảo luận chuyên môn, tôn trọng sự đa dạng cá nhân.'
+        ]
+      },
+      {
+        title: '2. Tác động của văn hóa đến hiệu suất cá nhân',
+        content: 'Một nhân sự có chuyên môn giỏi nhưng thiếu sự thấu cảm văn hóa sẽ dễ rơi vào thế cô lập hoặc gây xung đột ngầm. Ngược lại, người thấu hiểu văn hóa tổ chức sẽ biết cách tìm kiếm sự đồng thuận, phối hợp nhịp nhàng và giảm thiểu ma sát trong công việc.',
+        example: {
+          situation: 'Nhân viên mới vào công ty nhận thấy mọi người thường tự dọn cốc sau khi họp nhưng không có quy định bằng văn bản.',
+          goodApproach: 'Chủ động quan sát, học hỏi nếp sinh hoạt văn minh chung và duy trì thói quen tự giác dọn dẹp sau cuộc họp.',
+          badApproach: 'Nghĩ rằng "không có quy định phạt thì không cần làm" và để cốc bẩn lại cho người dọn vệ sinh.'
+        }
+      }
+    ],
+    dos: [
+      'Chủ động tìm hiểu cẩm nang văn hóa và các giá trị cốt lõi của tổ chức ngay khi nhận việc.',
+      'Quan sát tinh tế cách đồng nghiệp giao tiếp, phối hợp để nhanh chóng hòa nhập.',
+      'Giữ thái độ cởi mở, tôn trọng văn hóa công ty kể cả khi có điểm khác biệt với nơi làm việc cũ.'
+    ],
+    donts: [
+      'Phán xét vội vàng hoặc so sánh tiêu cực văn hóa công ty hiện tại với công ty cũ.',
+      'Tách mình khỏi các hoạt động tập thể mang tính gắn kết nội bộ.',
+      'Xem nhẹ các chuẩn mực ứng xử bất thành văn nhưng được tập thể coi trọng.'
+    ],
+    keyTakeaway: 'Văn hóa công sở là linh hồn của doanh nghiệp. Bạn không chỉ là người tuân thủ mà chính là một đại sứ đại diện cho văn hóa ấy qua từng cử chỉ hàng ngày.',
+    reviewQuestion: {
+      question: 'Theo mô hình văn hóa tổ chức, yếu tố nào sau đây thuộc tầng giả định ngầm hiểu sâu xa nhất?',
+      options: [
+        'Đồng phục và logo công ty',
+        'Bảng quy chế khen thưởng kỷ luật treo trên tường',
+        'Niềm tin cốt lõi về sự tôn trọng lẫn nhau và tính chính trực trong hành động',
+        'Các sự kiện teambuilding định kỳ hàng năm'
+      ],
+      correctIndex: 2,
+      explanation: 'Niềm tin cốt lõi và các giả định ngầm hiểu là tầng sâu nhất điều khiển hành vi tự nhiên của các thành viên trong tổ chức.'
+    }
+  },
+  {
+    id: 'lesson-2',
+    order: 2,
+    category: 'Tác phong, kỷ luật và trách nhiệm',
+    title: 'Tính Tự chịu trách nhiệm & Quản lý Cam kết (Accountability)',
+    summary: 'Rèn luyện thói quen đúng hẹn, làm chủ công việc được giao và văn hóa báo cáo chủ động trước khi sự cố xảy ra.',
+    estimatedMinutes: 15,
+    objectives: [
+      'Phân biệt rõ ràng giữa "trách nhiệm thực hiện" (Responsibility) và "trách nhiệm giải trình" (Accountability).',
+      'Thực hành quy tắc cảnh báo sớm khi dự án có nguy cơ chậm tiến độ.',
+      'Xóa bỏ tư duy đổ lỗi và hình thành tác phong làm việc hướng đến giải pháp.'
+    ],
+    sections: [
+      {
+        title: '1. Bản chất của sự cam kết trong công việc',
+        content: 'Người có tính kỷ luật cao là người coi lời hứa thời hạn (deadline) là cam kết thép. Khi nhận một nhiệm vụ, bạn nhận toàn quyền làm chủ quy trình, theo dõi sát sao tiến độ và không để cấp trên hay đồng nghiệp phải nhắc nhở nhiều lần.',
+        bulletPoints: [
+          'Chủ động xác nhận lại yêu cầu (Re-confirm): Sau khi nhận việc, tóm tắt lại đầu việc, tiêu chí hoàn thành và thời hạn gửi lại người giao.',
+          'Quy tắc 50% thời gian: Kiểm tra mốc giữa tiến độ để phát hiện sớm các điểm nghẽn tiềm ẩn.',
+          'Không im lặng khi gặp khó: Báo động ngay khi nhận thấy rủi ro chậm trễ, kèm theo tối thiểu 2 phương án khắc phục.'
+        ]
+      },
+      {
+        title: '2. Nguyên tắc cảnh báo sớm (Early Warning Principle)',
+        content: 'Tội nặng nhất trong phối hợp công việc không phải là làm chậm, mà là giữ im lặng cho đến đúng ngày đến hạn mới thông báo chưa làm xong. Cảnh báo sớm 2 ngày trước deadline giúp đội ngũ còn thời gian huy động nguồn lực bổ sung.',
+        example: {
+          situation: 'Bạn được giao hoàn thành bảng số liệu khảo sát vào thứ 6, nhưng đến thứ 4 đối tác thứ 3 chưa gửi đủ dữ liệu gốc.',
+          goodApproach: 'Chiều thứ 4 chủ động báo cáo sếp: "Dữ liệu đối tác chậm 1 ngày. Em đã gửi văn bản hối thúc và dự phòng phương án phân tích dữ liệu hiện có để kịp hạn thứ 6."',
+          badApproach: 'Im lặng chờ đợi đến chiều thứ 6 khi sếp hỏi mới trả lời: "Tại đối tác không gửi nên em chưa làm được gì cả."'
+        }
+      }
+    ],
+    dos: [
+      'Luôn ghi chú lại mọi cam kết công việc vào lịch cá nhân hoặc công cụ quản lý dự án.',
+      'Báo cáo tiến độ chủ động theo định kỳ đã thỏa thuận mà không đợi bị hối thúc.',
+      'Nhận lỗi thẳng thắn khi phạm sai sót và tập trung 90% năng lượng vào giải pháp xử lý hậu quả.'
+    ],
+    donts: [
+      'Tìm lý do khách quan (kẹt xe, máy hỏng, đồng nghiệp khác) để bao biện cho sự chậm trễ cá nhân.',
+      'Tự ý bỏ dở việc hoặc chuyển giao dở dang mà không bàn giao rõ ràng.',
+      'Hứa hẹn thời hạn phi thực tế chỉ để làm vừa lòng người khác nhất thời.'
+    ],
+    keyTakeaway: 'Uy tín cá nhân trong công sở được xây dựng từ những cam kết nhỏ nhất được thực hiện đúng giờ và chuẩn mực chất lượng.',
+    reviewQuestion: {
+      question: 'Khi nhận thấy một nhiệm vụ quan trọng chắc chắn không thể kịp deadline đã hẹn, hành động chuyên nghiệp nhất là gì?',
+      options: [
+        'Im lặng làm tiếp thâu đêm đến khi nào xong thì nộp, không cần báo trước để tránh bị khiển trách',
+        'Chủ động liên hệ sớm với các bên liên quan, nêu rõ lý do khách quan, đề xuất thời hạn điều chỉnh cụ thể kèm giải pháp giảm thiểu ảnh hưởng',
+        'Đổ lỗi cho bộ phận hỗ trợ vì đã cung cấp tài liệu muộn',
+        'Gửi email thông báo hủy nhiệm vụ do quá tải'
+      ],
+      correctIndex: 1,
+      explanation: 'Chủ động cảnh báo sớm kèm giải pháp và mốc thời gian cụ thể thể hiện tinh thần trách nhiệm cao và giúp tập thể không bị động.'
+    }
+  },
+  {
+    id: 'lesson-3',
+    order: 3,
+    category: 'Trang phục, giờ giấc và thái độ làm việc',
+    title: 'Chuẩn mực Diện mạo & Tác phong Thời gian nơi Công sở',
+    summary: 'Hướng dẫn quy tắc trang phục phù hợp hoàn cảnh (Dress Code), nguyên tắc đúng giờ và duy trì năng lượng tích cực.',
+    estimatedMinutes: 10,
+    objectives: [
+      'Hiểu rõ các cấp độ trang phục: Business Formal, Business Casual và Smart Casual.',
+      'Áp dụng quy tắc "Đến sớm 5-10 phút" trong các cuộc họp và sự kiện đối ngoại.',
+      'Xây dựng thái độ làm việc chuyên nghiệp, kiểm soát cảm xúc cá nhân tại nơi làm việc.'
+    ],
+    sections: [
+      {
+        title: '1. Quy tắc trang phục (Dress Code) và sự tôn trọng đối tác',
+        content: 'Trang phục công sở không chỉ thể hiện gu thẩm mỹ cá nhân mà còn đại diện cho hình ảnh thương hiệu công ty và sự tôn trọng đối với người đối diện. Cần phân biệt rõ bối cảnh để chọn trang phục thích hợp:',
+        bulletPoints: [
+          'Business Formal: Trang phục vest/suit lịch thiệp, sơ mi có cổ, cravat cho nam hoặc chân váy quá gối/quần âu cho nữ, dùng trong các sự kiện ký kết, gặp gỡ lãnh đạo cấp cao hoặc cơ quan nhà nước.',
+          'Business Casual: Áo sơ mi, áo polo có cổ phối quần tây/chân váy thanh lịch, giày kín mũi, phù hợp với ngày làm việc tiêu chuẩn.',
+          'Smart Casual: Trang phục gọn gàng, kín đáo, lịch sự cho các ngày thứ 6 hoặc môi trường sáng tạo công nghệ.'
+        ]
+      },
+      {
+        title: '2. Tác phong thời gian và văn hóa đúng giờ',
+        content: 'Đúng giờ là biểu hiện cơ bản nhất của tính chuyên nghiệp. "Đúng giờ" trong công sở có nghĩa là sẵn sàng trước 5-10 phút, kiểm tra thiết bị họp trước và có mặt đúng phòng họp thay vì vừa chạy vừa thở khi chuông điểm.',
+        example: {
+          situation: 'Bạn có buổi họp với đối tác chiến lược lúc 9:00 sáng tại văn phòng công ty.',
+          goodApproach: 'Có mặt tại phòng họp lúc 8:50, kết nối sẵn máy chiếu, chuẩn bị tài liệu in và nước uống đón khách chu đáo.',
+          badApproach: '9:02 mới vội vã mở cửa bước vào phòng họp, vừa lục tìm dây cắm vừa xin lỗi vì kẹt xe thang máy.'
+        }
+      }
+    ],
+    dos: [
+      'Đến sớm 5-10 phút trước giờ họp để chuẩn bị tâm thế và kiểm tra kỹ thuật.',
+      'Ăn mặc gọn gàng, thơm tho, lịch sự và phù hợp với tính chất sự kiện trong ngày.',
+      'Để điện thoại ở chế độ rung hoặc im lặng trong các cuộc họp và không gian làm việc chung.'
+    ],
+    donts: [
+      'Mặc trang phục quá hở hang, nhăn nhúm hoặc dép lê lẹp kẹp trong giờ làm việc.',
+      'Sử dụng nước hoa có mùi quá nồng trong không gian văn phòng điều hòa kín.',
+      'Mang năng lượng tiêu cực, than thở hoặc to tiếng ảnh hưởng đến sự tập trung của đồng nghiệp.'
+    ],
+    keyTakeaway: 'Diện mạo chỉnh chu và tác phong đúng giờ là tấm danh thiếp đầu tiên tạo nên sự tin cậy vững chắc của một chuyên gia.',
+    reviewQuestion: {
+      question: 'Trong môi trường doanh nghiệp chuẩn mực, quy tắc giờ giấc cho một cuộc họp trực tuyến hoặc trực tiếp là gì?',
+      options: [
+        'Vào phòng họp đúng số phút trên lịch, không cần sớm',
+        'Có mặt hoặc đăng nhập trước 5-10 phút để ổn định vị trí và kiểm tra thiết bị, tài liệu',
+        'Đến trễ tối đa 15 phút là bình thường và được chấp nhận',
+        'Chỉ cần người chủ trì có mặt đúng giờ, người tham gia vào lúc nào cũng được'
+      ],
+      correctIndex: 1,
+      explanation: 'Có mặt trước 5-10 phút chứng minh sự tôn trọng thời gian của người khác và đảm bảo cuộc họp bắt đầu đúng giờ đã định.'
+    }
+  },
+  {
+    id: 'lesson-4',
+    order: 4,
+    category: 'Giao tiếp với cấp trên',
+    title: 'Nghệ thuật Báo cáo, Tham vấn và Đề xuất Giải pháp',
+    summary: 'Cách trao đổi hiệu quả với lãnh đạo theo mô hình 5W1H và tư duy "Đừng chỉ mang vấn đề - Hãy mang theo giải pháp".',
+    estimatedMinutes: 14,
+    objectives: [
+      'Nắm vững mô hình báo cáo tóm tắt BLUF (Bottom Line Up Front) - Nêu kết luận trước.',
+      'Thành thạo kỹ năng đề xuất giải pháp theo cấu trúc 3 phương án lựa chọn.',
+      'Biết cách chọn đúng thời điểm và kênh giao tiếp phù hợp khi cần trao đổi với cấp trên.'
+    ],
+    sections: [
+      {
+        title: '1. Nguyên tắc BLUF (Bottom Line Up Front) - Nêu thông điệp chính trước',
+        content: 'Cấp trên thường có lịch trình bận rộn và phải xử lý hàng trăm quyết định mỗi ngày. Khi báo cáo, hãy bắt đầu bằng kết luận hoặc yêu cầu cốt lõi trước khi đi vào bối cảnh chi tiết.',
+        bulletPoints: [
+          'Câu mở đầu: "Thưa anh/chị, em báo cáo ngắn về kết quả dự án X: Chúng ta đã đạt 105% chỉ tiêu và cần anh/chị phê duyệt ngân sách nghiệm thu."',
+          'Chi tiết ngắn gọn: Nêu rõ 2-3 số liệu quan trọng nhất.',
+          'Hành động cần quyết định: Cần sếp quyết điều gì, trước thời gian nào.'
+        ]
+      },
+      {
+        title: '2. Tư duy Solution-Oriented: Đừng mang đến gánh nặng câu hỏi mở',
+        content: 'Thay vì đến gặp sếp và hỏi "Bây giờ đối tác từ chối thì làm thế nào ạ?", hãy chuẩn bị sẵn các kịch bản hành động khả thi để sếp định hướng và lựa chọn.',
+        example: {
+          situation: 'Chi phí vận chuyển nguyên vật liệu đột ngột tăng 15% do biến động thị trường.',
+          goodApproach: 'Trình bày: "Chi phí vận chuyển tăng 15%. Em xin đề xuất 2 giải pháp: PA 1 là đàm phán gộp đơn hàng lớn để giữ giá cũ; PA 2 là thử nghiệm đơn vị vận tải B có giá thấp hơn 8%. Em kiến nghị chọn PA 1."',
+          badApproach: 'Vào phòng sếp hốt hoảng nói: "Chết rồi sếp ơi giá cước tăng vọt lên 15% rồi, giờ công ty mình tính sao đây sếp?"'
+        }
+      }
+    ],
+    dos: [
+      'Luôn chuẩn bị kỹ số liệu và ít nhất 2 phương án trước khi gõ cửa xin ý kiến lãnh đạo.',
+      'Tôn trọng thứ bậc quản lý, tránh việc "vượt cấp" khi chưa có sự thống nhất nội bộ.',
+      'Ghi nhận phản hồi đóng góp của sếp bằng văn bản hoặc tin nhắn xác nhận sau cuộc họp.'
+    ],
+    donts: [
+      'Báo cáo quanh co, vòng vo dài dòng khiến người nghe không nắm được mục đích cốt lõi.',
+      'Đẩy toàn bộ trách nhiệm ra quyết định cho sếp mà không có chính kiến phân tích cá nhân.',
+      'Tranh cãi gay gắt nơi đông người khi bất đồng quan điểm chuyên môn với cấp trên.'
+    ],
+    keyTakeaway: 'Giao tiếp tốt với cấp trên là làm cho công việc của sếp trở nên dễ dàng hơn nhờ sự chủ động, súc tích và định hướng giải pháp của bạn.',
+    reviewQuestion: {
+      question: 'Mô hình báo cáo BLUF (Bottom Line Up Front) khuyến nghị bạn nên làm gì đầu tiên?',
+      options: [
+        'Kể tường tận quá trình từ đầu đến cuối một cách tuần tự theo dòng thời gian',
+        'Nêu ngay thông điệp kết luận chính hoặc hành động cần phê duyệt trước khi đi vào giải thích chi tiết',
+        'Liệt kê danh sách khó khăn của đội ngũ trước để xin thông cảm',
+        'Hỏi ý kiến của sếp xem sếp muốn nghe chuyện gì trước'
+      ],
+      correctIndex: 1,
+      explanation: 'BLUF đặt kết quả quan trọng nhất lên đầu câu chuyện để người lãnh đạo nắm bắt được bản chất vấn đề chỉ trong vài giây đầu.'
+    }
+  },
+  {
+    id: 'lesson-5',
+    order: 5,
+    category: 'Giao tiếp với đồng nghiệp',
+    title: 'Hợp tác Đa phòng ban & Tôn trọng Ranh giới Cá nhân',
+    summary: 'Xây dựng mối quan hệ tin cậy, phối hợp trơn tru giữa các bộ phận và giữ gìn văn hóa ứng xử chuẩn mực nơi văn phòng.',
+    estimatedMinutes: 12,
+    objectives: [
+      'Hiểu tâm lý và động lực công việc của các phòng ban khác (Kinh doanh, Kỹ thuật, Kế toán, Nhân sự).',
+      'Ứng dụng nguyên tắc tôn trọng không gian làm việc và ranh giới cá nhân.',
+      'Loại bỏ thói quen bàn tán thị phi (gossip) gây độc hại môi trường làm việc.'
+    ],
+    sections: [
+      {
+        title: '1. Phá vỡ rào cản phòng ban (Silo Mentality)',
+        content: 'Mỗi phòng ban thường có chỉ số KPI và áp lực riêng: Kinh doanh tập trung vào doanh số và khách hàng, Kỹ thuật chú trọng tính ổn định của hệ thống, Kế toán đặt nặng quy chuẩn chứng từ. Để hợp tác tốt, cần đặt mình vào vị trí của bộ phận đối diện.',
+        bulletPoints: [
+          'Giải thích rõ "Vì sao cần": Khi nhờ vả việc liên phòng ban, hãy chia sẻ mục tiêu chung thay vì chỉ đưa ra thời hạn áp đặt.',
+          'Đưa đầy đủ thông tin đầu vào (Input): Đừng bắt đồng nghiệp phải tự đoán những dữ liệu bạn đã có sẵn.',
+          'Ghi nhận công sức: Luôn cảm ơn và ghi nhận đóng góp của phòng ban hỗ trợ trong các báo cáo chung.'
+        ]
+      },
+      {
+        title: '2. Ứng xử trong không gian làm việc chung (Open Space Etiquette)',
+        content: 'Văn phòng mở đòi hỏi ý thức tự giác cao độ về âm thanh và không gian cá nhân.',
+        example: {
+          situation: 'Bạn cần trao đổi một cuộc gọi dài với khách hàng cá nhân hoặc thảo luận kỹ thuật sôi nổi với đồng nghiệp.',
+          goodApproach: 'Di chuyển vào buồng điện thoại (phone booth) hoặc phòng họp nhỏ để tránh gây ồn ào tới người xung quanh.',
+          badApproach: 'Bật loa ngoài tại bàn làm việc hoặc nói to hết cỡ trong khi cả phòng đang tập trung làm việc.'
+        }
+      }
+    ],
+    dos: [
+      'Gửi lời cảm ơn chân thành khi nhận được sự trợ giúp từ đồng nghiệp các bộ phận khác.',
+      'Hỏi thăm xem đồng nghiệp có đang bận gấp không trước khi nhờ việc đột xuất.',
+      'Sẵn sàng chia sẻ kiến thức, tài liệu và hỗ trợ người mới hòa nhập.'
+    ],
+    donts: [
+      'Nói xấu, tụ tập bàn tán chuyện đời tư cá nhân của đồng nghiệp trong giờ làm việc.',
+      'Tự tiện lục lọi hoặc sử dụng đồ đạc trên bàn làm việc của người khác khi chưa được phép.',
+      'Trút sự bực bội hoặc nói năng cộc lốc với đồng nghiệp khi bản thân bị căng thẳng.'
+    ],
+    keyTakeaway: 'Thành công của dự án lớn là sự hòa âm của cả tập thể. Tôn trọng đồng nghiệp chính là tôn trọng môi trường nuôi dưỡng sự nghiệp của bạn.',
+    reviewQuestion: {
+      question: 'Khi cần sự hỗ trợ khẩn cấp từ một phòng ban khác đang chịu nhiều áp lực, cách tiếp cận nào khéo léo nhất?',
+      options: [
+        'Gửi email gắn thẻ sếp của họ vào để gây áp lực hành chính bắt buộc họ phải làm ngay',
+        'Đến tận nơi hoặc gọi điện, giải thích bối cảnh mục tiêu chung, lắng nghe khả năng đáp ứng của họ và cùng thống nhất mốc thời gian hợp lý nhất',
+        'Nhờ người thân quen ở phòng đó làm chui để qua mặt quy trình',
+        'Phàn nàn trong nhóm chung rằng phòng ban đó luôn gây cản trở công việc'
+      ],
+      correctIndex: 1,
+      explanation: 'Gặp gỡ trực tiếp với thái độ thấu cảm, giải thích mục tiêu chung và cùng tìm tiếng nói chung là cách xây dựng quan hệ hợp tác bền vững.'
+    }
+  },
+  {
+    id: 'lesson-6',
+    order: 6,
+    category: 'Giao tiếp với khách hàng và đối tác',
+    title: 'Nghi thức Đối ngoại, Xây dựng Niềm tin & Phụng sự Khách hàng',
+    summary: 'Quy chuẩn chào đón khách, trao nhận danh thiếp, nghệ thuật lắng nghe khách hàng khó tính và giữ vững nguyên tắc bảo mật.',
+    estimatedMinutes: 14,
+    objectives: [
+      'Thành thạo văn hóa bắt tay, trao nhận danh thiếp và sắp xếp vị trí ngồi tiếp khách.',
+      'Áp dụng quy tắc "Khách hàng không bao giờ sai về mặt cảm xúc".',
+      'Giữ vững ranh giới đạo đức nghề nghiệp và thông tin bảo mật khi giao dịch với đối tác.'
+    ],
+    sections: [
+      {
+        title: '1. Nghi thức gặp gỡ đối tác trang trọng',
+        content: 'Ấn tượng đầu tiên được định hình chỉ trong 7 giây đầu tiên. Các chi tiết nhỏ trong nghi thức thể hiện đẳng cấp tổ chức:',
+        bulletPoints: [
+          'Văn hóa danh thiếp: Luôn trao và nhận danh thiếp bằng hai tay, mặt chữ hướng về phía người nhận; dành 3-5 giây đọc trân trọng trước khi đặt ngay ngắn trên bàn họp.',
+          'Nghi thức bắt tay: Đứng thẳng, nhìn thẳng vào mắt, bắt tay dứt khoát vừa phải (không quá chặt, không hờ hững). Người có cấp bậc cao hơn hoặc phái nữ thường là người chủ động đưa tay ra trước.',
+          'Vị trí ngồi họp: Vị trí quay mặt ra cửa chính thường dành cho khách quý hoặc trưởng đoàn.'
+        ]
+      },
+      {
+        title: '2. Xoa dịu khách hàng khi xảy ra lỗi dịch vụ',
+        content: 'Khi khách hàng bức xúc, trước khi giải thích quy trình hay đổ lỗi cho kỹ thuật, hãy lắng nghe và xoa dịu cảm xúc thất vọng của họ.',
+        example: {
+          situation: 'Khách hàng bức xúc vì đơn hàng giao trễ 2 tiếng khiến họ lỡ buổi thuyết trình nội bộ.',
+          goodApproach: '"Em hoàn toàn hiểu sự bất tiện nghiêm trọng mà sự cố này gây ra cho buổi thuyết trình của anh. Em xin chân thành xin lỗi anh. Em đang trực tiếp chỉ đạo đội xe giao hàng trong 15 phút tới và sẽ có phương án đền bù thỏa đáng."',
+          badApproach: '"Bên vận chuyển kẹt xe mưa bão chứ bên em có lỗi gì đâu anh. Quy định ghi rõ thời gian giao hàng có thể xê dịch mà."'
+        }
+      }
+    ],
+    dos: [
+      'Chuẩn bị chu đáo phòng họp, tài liệu và phương án đón tiếp khách đối tác từ sảnh.',
+      'Ghi chép cẩn thận các yêu cầu của đối tác và gửi email tóm tắt biên bản họp trong vòng 24 giờ.',
+      'Giữ thái độ điềm tĩnh, chuyên nghiệp ngay cả khi khách hàng đang gay gắt.'
+    ],
+    donts: [
+      'Cắt ngang lời khách hàng đang bức xúc để thanh minh hoặc viện dẫn điều khoản hợp đồng.',
+      'Hứa hẹn những điều nằm ngoài thẩm quyền hoặc ngoài năng lực đáp ứng của tổ chức.',
+      'Để lộ thông tin nội bộ hoặc tiết lộ giá thầu của đối tác cạnh tranh khác.'
+    ],
+    keyTakeaway: 'Đối tác và khách hàng chọn gắn bó lâu dài không chỉ vì sản phẩm mà còn vì sự an tâm và thái độ phục vụ tận tụy, chân thành của bạn.',
+    reviewQuestion: {
+      question: 'Khi nhận danh thiếp từ một đối tác kinh doanh mới gặp, hành động nào thể hiện đúng nghi thức chuyên nghiệp?',
+      options: [
+        'Cầm bằng một tay và đút ngay vào túi quần sau để tránh làm rơi',
+        'Nhận bằng hai tay, mỉm cười, đọc lướt tên và chức danh trong vài giây rồi đặt trân trọng lên bàn trước mặt',
+        'Ghi chú ngay số điện thoại riêng của mình đè lên danh thiếp của đối tác',
+        'Từ chối nhận vì ngày nay đã dùng Zalo và LinkedIn'
+      ],
+      correctIndex: 1,
+      explanation: 'Nhận bằng hai tay và đọc tên thể hiện sự tôn trọng danh tính cá nhân và vị trí nghề nghiệp của người trao.'
+    }
+  },
+  {
+    id: 'lesson-7',
+    order: 7,
+    category: 'Kỹ năng lắng nghe và phản hồi',
+    title: 'Lắng nghe Thấu cảm (Active Listening) & Mô hình Phản hồi SBI',
+    summary: 'Kỹ năng lắng nghe không phán xét, cách đón nhận lời phê bình mang tính xây dựng và phương pháp góp ý theo mô hình SBI.',
+    estimatedMinutes: 13,
+    objectives: [
+      'Phân biệt giữa nghe thấy (Hearing) và lắng nghe chủ động (Active Listening).',
+      'Ứng dụng mô hình phản hồi SBI (Situation - Behavior - Impact) để góp ý không mang tính công kích cá nhân.',
+      'Chuyển hóa lời phê bình của sếp và đồng nghiệp thành cơ hội nâng tầm năng lực.'
+    ],
+    sections: [
+      {
+        title: '1. Kỹ năng lắng nghe tích cực (Active Listening)',
+        content: 'Hầu hết mọi người nghe không phải để hiểu, mà là nghe để chuẩn bị phản bác. Lắng nghe tích cực đòi hỏi sự tập trung 100%, sử dụng ngôn ngữ cơ thể (gật đầu nhẹ, mắt tập trung) và kỹ thuật diễn giải lại (Paraphrasing) để xác nhận sự thấu hiểu.',
+        bulletPoints: [
+          'Kỹ thuật Paraphrasing: "Theo em hiểu thì ý của anh/chị là... có phải không ạ?"',
+          'Không ngắt lời: Hãy để người đối diện nói hết mạch suy nghĩ trước khi đưa ra quan điểm của mình.',
+          'Lắng nghe điều không nói bằng lời: Chú ý giọng điệu, nhịp thở và ánh mắt để nhận biết cảm xúc tiềm ẩn.'
+        ]
+      },
+      {
+        title: '2. Mô hình phản hồi SBI (Situation - Behavior - Impact)',
+        content: 'Khi góp ý cho đồng nghiệp hoặc cấp dưới, việc nói chung chung như "Em làm ăn tắc trách quá" sẽ gây phòng thủ. Hãy dùng công thức SBI để phản hồi dựa trên sự thật khách quan:',
+        example: {
+          situation: 'Góp ý một đồng nghiệp thường xuyên ngắt lời người khác trong cuộc họp giao ban.',
+          goodApproach: '"Trong cuộc họp sáng nay (Situation), khi bạn Linh đang trình bày dự án thì em đã ngắt lời 3 lần (Behavior). Việc này làm ngắt quãng mạch suy nghĩ của bạn và khiến khách hàng cảm thấy nhóm mình thiếu đồng thuận (Impact). Lần sau em đợi bạn trình bày xong rồi bổ sung nhé."',
+          badApproach: '"Em lúc nào cũng vô duyên, tính tình hiếu thắng thích thể hiện trong cuộc họp."'
+        }
+      }
+    ],
+    dos: [
+      'Tách biệt con người (nhân phẩm) và hành vi cụ thể khi đưa ra nhận xét phản hồi.',
+      'Thực hiện phản hồi khen ngợi công khai và góp ý điều chỉnh ở không gian riêng tư (Praise in public, criticize in private).',
+      'Nói lời cảm ơn chân thành khi nhận được góp ý thẳng thắn từ người khác.'
+    ],
+    donts: [
+      'Vừa nghe người khác nói vừa bấm điện thoại hoặc liếc màn hình máy tính.',
+      'Sử dụng các từ khái quát hóa tiêu cực như "bạn luôn luôn...", "bạn không bao giờ...".',
+      'Dựng lên bức tường phòng thủ, phản ứng giận dữ khi nhận lời phê bình.'
+    ],
+    keyTakeaway: 'Phản hồi mang tính xây dựng là món quà giúp nhau cùng tiến bộ. Người thông minh là người biết biến những lời phê bình sắc bén thành bài học để trưởng thành.',
+    reviewQuestion: {
+      question: 'Trong mô hình phản hồi SBI, chữ I (Impact - Tác động) có ý nghĩa gì?',
+      options: [
+        'Áp đặt hình phạt kỷ luật thích đáng',
+        'Giải thích hậu quả hoặc ảnh hưởng cụ thể mà hành vi đó gây ra cho công việc, tập thể hoặc cảm xúc của người khác',
+        'Đưa ra lời chỉ trích nặng nề để đối phương nhớ lâu',
+        'Lờ đi tác động và coi như không có chuyện gì nghiêm trọng'
+      ],
+      correctIndex: 1,
+      explanation: 'Chữ Impact giải thích rõ hậu quả khách quan của hành vi giúp đối phương nhận thức được mức độ ảnh hưởng mà không cảm thấy bị sỉ nhục cá nhân.'
+    }
+  },
+  {
+    id: 'lesson-8',
+    order: 8,
+    category: 'Giao tiếp qua email, điện thoại và cuộc họp',
+    title: 'Chuẩn mực Thư tín Điện tử, Cuộc gọi & Văn hóa Hội họp',
+    summary: 'Nguyên tắc viết email súc tích chuẩn mực, văn hóa CC/BCC, tác phong gọi điện thoại nghiệp vụ và điều hành cuộc họp hiệu quả.',
+    estimatedMinutes: 16,
+    objectives: [
+      'Nắm vững cấu trúc một email thương mại chuyên nghiệp và cách đặt tiêu đề (Subject line) hấp dẫn.',
+      'Sử dụng đúng chức năng TO, CC, BCC và tránh lỗi Reply All ngớ ngẩn.',
+      'Nắm bắt quy tắc vàng điều phối cuộc họp: Có chương trình họp (Agenda), có mục tiêu rõ và biên bản kết luận (Minutes of Meeting).'
+    ],
+    sections: [
+      {
+        title: '1. Chuẩn mực thư tín điện tử (Email Etiquette)',
+        content: 'Email là văn bản hành chính lưu trữ có tính pháp lý cao. Một email chuyên nghiệp cần hội đủ:',
+        bulletPoints: [
+          'Tiêu đề rõ ràng, chứa mã dự án: Ví dụ: "[Dự án Alpha] Báo cáo tiến độ tuần 42 - Đề xuất duyệt ngân sách bổ sung".',
+          'Lời chào lịch thiệp: "Kính gửi Anh/Chị...", "Chào Ban Quản trị dự án...". Tuyệt đối tránh gửi email không có lời chào.',
+          'Phân biệt TO, CC và BCC: TO dành cho người trực tiếp hành động; CC dành cho người cần nắm thông tin để theo dõi; BCC dùng khi cần bảo mật danh sách email đối ngoại hoặc gửi thông báo hàng loạt.',
+          'Chữ ký email chuyên nghiệp: Gồm Họ tên, Chức vụ, Bộ phận, Số máy nội bộ và Số di động liên hệ.'
+        ]
+      },
+      {
+        title: '2. Văn hóa hội họp văn minh (Meeting Culture)',
+        content: 'Một trong những kẻ lãng phí thời gian lớn nhất tại công sở là các cuộc họp vô bổ kéo dài không hồi kết.',
+        example: {
+          situation: 'Tổ chức cuộc họp giải quyết sự cố kỹ thuật của hệ thống thanh toán trực tuyến.',
+          goodApproach: 'Gửi trước Agenda và tài liệu mô tả lỗi trước 3 tiếng; cuộc họp giới hạn đúng 30 phút; kết thúc bằng danh sách Action Items phân công rõ: Ai làm việc gì, hạn chót khi nào.',
+          badApproach: 'Gọi mọi người vào phòng họp gấp mà không báo trước nội dung, mọi người ngồi bấm điện thoại trong khi 2 người cãi nhau suốt 2 tiếng không ra được kết luận.'
+        }
+      }
+    ],
+    dos: [
+      'Kiểm tra kỹ chính tả, file đính kèm và địa chỉ người nhận trước khi nhấn nút "Send".',
+      'Trả lời email công việc quan trọng trong vòng 24 giờ làm việc.',
+      'Tóm tắt các quyết định bằng biên bản họp gửi cho tất cả người tham dự trong cùng ngày.'
+    ],
+    donts: [
+      'Nhấn "Reply All" cho toàn công ty chỉ để nói "Cảm ơn" hoặc "Em đã nhận được".',
+      'Viết hoa TOÀN BỘ CHỮ TRONG EMAIL (tương đương với hành vi quát tháo vào mặt người nhận).',
+      'Tổ chức cuộc họp mà không có mục tiêu cụ thể hoặc không có người chủ trì điều phối.'
+    ],
+    keyTakeaway: 'Email rõ ràng và cuộc họp súc tích tiết kiệm hàng trăm giờ lao động cho tổ chức. Hãy tôn trọng thời gian của nhau bằng sự chuẩn bị chu đáo.',
+    reviewQuestion: {
+      question: 'Trong giao tiếp email công sở, mục CC (Carbon Copy) nên được sử dụng cho đối tượng nào?',
+      options: [
+        'Người có trách nhiệm chính phải trực tiếp thực thi nhiệm vụ được giao',
+        'Người cần được thông báo và theo dõi tiến độ sự việc nhưng không bắt buộc phải trực tiếp hành động',
+        'Người cần được giấu danh tính tuyệt đối khỏi chuỗi trao đổi',
+        'Toàn bộ nhân viên công ty để thể hiện sự minh bạch tuyệt đối'
+      ],
+      correctIndex: 1,
+      explanation: 'Mục CC dành cho những người liên quan cần nắm bắt thông tin để phối hợp hoặc giám sát, trong khi mục TO dành cho người trực tiếp hành động.'
+    }
+  },
+  {
+    id: 'lesson-9',
+    order: 9,
+    category: 'Xử lý mâu thuẫn và tình huống khó',
+    title: 'Giải quyết Xung đột Xây dựng theo Mô hình Thomas-Kilmann',
+    summary: 'Phương pháp tách bạch con người khỏi vấn đề, quản lý cảm xúc khi căng thẳng và 5 phong cách xử lý xung đột trong công việc.',
+    estimatedMinutes: 15,
+    objectives: [
+      'Hiểu bản chất của xung đột công việc: Xung đột nhận thức (lành mạnh) khác với xung đột tình cảm (phá hoại).',
+      'Nắm vững 5 phong cách giải quyết xung đột theo mô hình Thomas-Kilmann (Cạnh tranh, Hợp tác, Thỏa hiệp, Tránh né, Nhượng bộ).',
+      'Luyện tập kỹ thuật "Hạ nhiệt cảm xúc" trong các cuộc tranh luận căng thẳng.'
+    ],
+    sections: [
+      {
+        title: '1. Phân biệt xung đột lành mạnh và xung đột phá hoại',
+        content: 'Tổ chức không có xung đột thường là tổ chức trì trệ. Tranh luận về giải pháp kỹ thuật, chiến lược kinh doanh (Task Conflict) giúp tạo ra các ý tưởng sáng tạo đột phá. Điều nguy hiểm là khi tranh luận công việc biến thành công kích cá nhân (Relationship Conflict).',
+        bulletPoints: [
+          'Tập trung vào lợi ích chung: Luôn nhắc nhở cả hai bên về mục tiêu lớn nhất là thành công của dự án và lợi ích công ty.',
+          'Tách bạch vấn đề và con người: Nói về dữ liệu, quy trình và kết quả thay vì nói về tính cách hay đạo đức của người khác.',
+          'Khoảng dừng 5 giây: Khi cảm thấy cơn giận bốc lên, hít thở sâu 5 giây trước khi phát ngôn để vỏ não lý trí kịp kiểm soát.'
+        ]
+      },
+      {
+        title: '2. Ứng dụng 5 phong cách giải quyết xung đột (TKI)',
+        content: 'Không có một phong cách nào tối ưu cho mọi tình huống:',
+        bulletPoints: [
+          'Hợp tác (Collaborating): Cả hai bên cùng ngồi lại tìm phương án "Thắng - Thắng" (Win - Win). Tối ưu cho các vấn đề quan trọng dài hạn.',
+          'Thỏa hiệp (Compromising): Mỗi bên nhường một bước để kịp thời hạn. Phù hợp khi thời gian gấp gáp.',
+          'Tránh né (Avoiding): Tạm dừng tranh cãi khi cảm xúc quá nóng giận để hai bên bình tĩnh lại.',
+          'Nhượng bộ (Accommodating): Nhường quyền quyết định cho đối phương khi vấn đề đó có ý nghĩa với họ hơn hoặc khi ta nhận ra mình sai.'
+        ]
+      }
+    ],
+    dos: [
+      'Lắng nghe quan điểm của đối phương đến cùng để hiểu nguyên nhân gốc rễ nỗi lo của họ.',
+      'Tìm kiếm những điểm tương đồng (Common Ground) trước khi bàn về những điểm khác biệt.',
+      'Sử dụng đại từ "Chúng ta" thay vì "Tôi và Anh/Chị" để chuyển tư thế từ đối đầu sang cùng giải quyết vấn đề.'
+    ],
+    donts: [
+      'Sử dụng ngôn từ mỉa mai, xúc phạm danh dự hoặc bới móc chuyện cũ không liên quan.',
+      'Mang mâu thuẫn cá nhân ra tranh cãi trước mặt cấp dưới hoặc khách hàng.',
+      'Ủ mưu trả đũa ngầm hoặc bất hợp tác thụ động (Passive-Aggressive) sau khi tranh cãi.'
+    ],
+    keyTakeaway: 'Mục tiêu của giải quyết xung đột không phải là giành phần thắng cho bản thân, mà là cùng nhau tìm ra giải pháp tốt nhất cho tổ chức.',
+    reviewQuestion: {
+      question: 'Khi hai trưởng nhóm bất đồng gay gắt về phương án triển khai dự án, nguyên tắc vàng đầu tiên cần tuân thủ là gì?',
+      options: [
+        'Ai có thâm niên lâu hơn người đó tự động thắng',
+        'Tách bạch con người ra khỏi vấn đề: Tập trung vào dữ liệu và mục tiêu chung của dự án thay vì công kích cá nhân đối phương',
+        'Im lặng không thèm nói chuyện và chờ sếp tổng can thiệp xử phạt',
+        'Kêu gọi các thành viên trong nhóm bỏ phiếu bầu chia phe phái'
+      ],
+      correctIndex: 1,
+      explanation: 'Tách con người khỏi vấn đề giúp duy trì sự tôn trọng nghề nghiệp và đưa cuộc tranh luận về tính hiệu quả của công việc.'
+    }
+  },
+  {
+    id: 'lesson-10',
+    order: 10,
+    category: 'Đạo đức nghề nghiệp, bảo mật và ứng xử trên môi trường số',
+    title: 'Đạo đức Nghề nghiệp, Bảo mật Thông tin & Ứng xử Không gian Số',
+    summary: 'Nguyên tắc bảo vệ dữ liệu doanh nghiệp, đạo đức công vụ, phòng tránh quấy rối và gìn giữ uy tín cá nhân trên mạng xã hội.',
+    estimatedMinutes: 14,
+    objectives: [
+      'Hiểu rõ nghĩa vụ bảo mật dữ liệu khách hàng và bí mật kinh doanh (NDA).',
+      'Nhận diện các hành vi vi phạm đạo đức nghề nghiệp: Xung đột lợi ích, nhận quà tặng trái quy định.',
+      'Thực hành quy tắc ứng xử chuẩn mực trên mạng xã hội công cộng liên quan đến danh tiếng công ty.'
+    ],
+    sections: [
+      {
+        title: '1. Bảo mật dữ liệu và an toàn thông tin',
+        content: 'Trong kỷ nguyên số, một sơ suất nhỏ có thể khiến công ty thiệt hại hàng triệu USD và vướng vào trách nhiệm hình sự. Tuân thủ nghiêm ngặt:',
+        bulletPoints: [
+          'Khóa màn hình (Windows + L hoặc Command + Control + Q) mỗi khi rời khỏi bàn làm việc dù chỉ 1 phút.',
+          'Không sử dụng USB cá nhân không kiểm duyệt hoặc gửi file dữ liệu khách hàng qua email cá nhân/Google Drive ngoài.',
+          'Cảnh giác với các email lừa đảo (Phishing) giả danh ngân hàng hoặc ban giám đốc yêu cầu chuyển tiền hay gửi mật khẩu.'
+        ]
+      },
+      {
+        title: '2. Ứng xử trên mạng xã hội (Social Media Etiquette)',
+        content: 'Dù là trang cá nhân, khi bạn để thông tin nơi làm việc, phát ngôn của bạn có thể bị liên đới đến hình ảnh công ty.',
+        example: {
+          situation: 'Công ty đang có tin đồn tái cấu trúc hoặc nhân sự, bạn biết một phần thông tin nội bộ.',
+          goodApproach: 'Tuyệt đối không bình luận, không đăng status ẩn ý mập mờ gây hoang mang cho đồng nghiệp và khách hàng.',
+          badApproach: 'Đăng đàn mạng xã hội chia sẻ ảnh chụp màn hình email nội bộ kèm lời bóng gió mỉa mai ban lãnh đạo.'
+        }
+      }
+    ],
+    dos: [
+      'Báo cáo ngay cho bộ phận IT hoặc An ninh thông tin khi phát hiện dấu hiệu rò rỉ dữ liệu.',
+      'Khai báo minh bạch các mối quan hệ có nguy cơ dẫn đến xung đột lợi ích cá nhân và công việc.',
+      'Tôn trọng bản quyền phần mềm, hình ảnh và tài sản trí tuệ trong mọi sản phẩm của công ty.'
+    ],
+    donts: [
+      'Tiết lộ số liệu tài chính, chiến lược sản phẩm mới hoặc thông tin khách hàng cho người ngoài.',
+      'Sử dụng tài nguyên máy tính hoặc thời gian công ty để phục vụ kinh doanh tay trái của cá nhân.',
+      'Tham gia vào các hội nhóm mạng xã hội bóc phốt, phát ngôn thù hận làm tổn hại uy tín thương hiệu tổ chức.'
+    ],
+    keyTakeaway: 'Chính trực là làm điều đúng đắn ngay cả khi không có ai đang nhìn bạn. Đạo đức nghề nghiệp là nền móng bảo vệ sự nghiệp bền vững suốt đời.',
+    reviewQuestion: {
+      question: 'Hành động nào sau đây vi phạm nghiêm trọng quy chuẩn an toàn thông tin và đạo đức công sở?',
+      options: [
+        'Khóa màn hình máy tính khi đi uống nước',
+        'Tự ý chuyển tiếp (forward) file danh sách thông tin khách hàng và số dư tài chính về hòm thư Gmail cá nhân để làm việc ở nhà',
+        'Báo cáo với quản trị viên khi nhận được email có tệp đính kèm đáng ngờ',
+        'Yêu cầu đối tác ký thỏa thuận bảo mật thông tin (NDA) trước khi cung cấp hồ sơ thầu'
+      ],
+      correctIndex: 1,
+      explanation: 'Tự ý chuyển dữ liệu nhạy cảm ra khỏi hệ thống bảo mật của công ty vi phạm nghiêm trọng chính sách an toàn thông tin và cam kết bảo mật.'
+    }
+  }
+];
+
+export const INITIAL_SCENARIOS: Scenario[] = [
+  {
+    id: 'scenario-1',
+    order: 1,
+    category: 'Giao tiếp với đồng nghiệp',
+    title: 'Đồng nghiệp cùng nhóm thường xuyên trễ deadline ảnh hưởng đến dự án chung',
+    characterRole: 'Trưởng nhóm phụ trách dự án số hóa hồ sơ khách hàng',
+    context: 'Bạn và Tuấn (đồng nghiệp có chuyên môn lập trình tốt nhưng tính cách tự do) cùng phối hợp bàn giao gói chức năng cho khách hàng vào thứ 6. Đây là lần thứ 3 trong tháng Tuấn nộp phần việc của mình muộn hơn cam kết từ 1 đến 2 ngày, khiến bạn phải ở lại công ty làm bù thâu đêm để kịp tiến độ chung.',
+    problemStatement: 'Sáng nay, Tuấn lại báo qua tin nhắn là phần việc của hôm nay có lẽ sang đầu tuần sau mới gửi được. Bạn sẽ xử lý tình huống này như thế nào?',
+    options: [
+      {
+        id: 'sc1-opt-a',
+        text: 'Nổi giận nhắn vào nhóm Zalo chung của cả phòng: "Tuấn làm việc vô trách nhiệm quá, lần nào cũng trễ hạn bắt người khác gánh nợ."',
+        quality: 'poor',
+        feedbackTitle: 'Chưa phù hợp - Khiến đồng nghiệp phòng thủ và làm xấu hình ảnh tập thể',
+        feedbackDescription: 'Chỉ trích công khai trên nhóm chung kích hoạt cơ chế tự vệ, gây tổn thương lòng tự trọng của đối phương và làm bầu không khí làm việc trở nên căng thẳng, mất đoàn kết.',
+        recommendedPhrasing: 'Nên gặp trực tiếp hoặc trao đổi riêng tư (1-on-1) để giữ thể diện cho đồng nghiệp.',
+        scoreAwarded: 5
+      },
+      {
+        id: 'sc1-opt-b',
+        text: 'Im lặng không nói gì, tự mình làm luôn phần việc của Tuấn để tránh tranh cãi, dù trong lòng rất ức chế.',
+        quality: 'acceptable',
+        feedbackTitle: 'Tạm thời giải quyết việc gấp nhưng để lại hậu quả lâu dài',
+        feedbackDescription: 'Cách này giúp dự án không bị đình trệ trước mắt nhưng khiến bạn bị quá tải, tạo điều kiện cho thói quen ỷ lại tiếp tục tiếp diễn và ngấm ngầm nuôi dưỡng mâu thuẫn ngầm.',
+        recommendedPhrasing: 'Cần thiết lập ranh giới trách nhiệm rõ ràng thay vì làm thay âm thầm.',
+        scoreAwarded: 15
+      },
+      {
+        id: 'sc1-opt-c',
+        text: 'Hẹn Tuấn uống cà phê hoặc vào phòng họp riêng để trao đổi thẳng thắn theo mô hình SBI, lắng nghe khó khăn của Tuấn và thiết lập lại mốc cam kết cụ thể.',
+        quality: 'best',
+        feedbackTitle: 'Rất xuất sắc - Chuẩn mực lãnh đạo và giao tiếp xây dựng',
+        feedbackDescription: 'Tách riêng không gian để giữ thể diện, dùng sự thật khách quan về tác động của việc chậm trễ đối với toàn đội, đồng thời tìm hiểu nguyên nhân gốc rễ (quá tải kỹ thuật hay quản lý thời gian) để cùng tìm giải pháp.',
+        recommendedPhrasing: '"Tuấn ơi, mình cần trao đổi riêng 10 phút. Việc bàn giao trễ hôm nay khiến cả nhóm không thể chạy thử hệ thống và khách hàng đang hối thúc gắt gao. Có khó khăn kỹ thuật gì đang làm chậm tiến độ của bạn không? Chúng mình cùng tháo gỡ nhưng hạn chót bắt buộc phải trước 17:00 chiều mai nhé."',
+        scoreAwarded: 40
+      }
+    ]
+  },
+  {
+    id: 'scenario-2',
+    order: 2,
+    category: 'Giao tiếp với cấp trên',
+    title: 'Cấp trên phê bình gay gắt về chất lượng bản kế hoạch chiến lược',
+    characterRole: 'Chuyên viên nghiên cứu & lập kế hoạch kinh doanh',
+    context: 'Trong buổi họp giao ban sáng thứ 2, Giám đốc khối ném bản kế hoạch kinh doanh của bạn xuống bàn và nói với giọng rất bực tức: "Em làm ăn kiểu gì thế này? Số liệu thì sơ sài, giải pháp thì viển vông, không áp dụng được vào thực tế!" trước mặt 6 đồng nghiệp khác.',
+    problemStatement: 'Cảm giác xấu hổ và uất ức đang dâng trào trong bạn. Bạn phản ứng thế nào ngay tại thời điểm đó?',
+    options: [
+      {
+        id: 'sc2-opt-a',
+        text: 'Bật lại ngay lập tức: "Em đã thức 3 đêm để làm báo cáo này, sếp không ghi nhận còn chê bai thì sếp tự đi mà làm!" rồi đứng dậy bỏ ra khỏi phòng họp.',
+        quality: 'poor',
+        feedbackTitle: 'Rất nguy hiểm - Vi phạm nghiêm trọng kỷ luật và phá hủy sự nghiệp',
+        feedbackDescription: 'Để cảm xúc bộc phát phá vỡ trật tự cuộc họp sẽ biến một sai sót chuyên môn thành vi phạm đạo đức tác phong nghiêm trọng, khó có thể cứu vãn uy tín nghề nghiệp.',
+        recommendedPhrasing: 'Tuyệt đối giữ bình tĩnh, hít thở sâu, không biến tranh luận chuyên môn thành cuộc chiến thể diện.',
+        scoreAwarded: 0
+      },
+      {
+        id: 'sc2-opt-b',
+        text: 'Giữ nét mặt điềm tĩnh, hít một hơi sâu, ghi nhận phản hồi của Giám đốc và đề xuất một cuộc họp riêng ngắn để tiếp thu chi tiết các điểm cần hiệu chỉnh.',
+        quality: 'best',
+        feedbackTitle: 'Rất chuyên nghiệp - Bản lĩnh thép của người làm việc lớn',
+        feedbackDescription: 'Bạn không cãi lại làm leo thang căng thẳng trước đám đông, nhưng cũng không suy sụp. Bằng việc đề xuất trao đổi riêng, bạn bảo vệ được sự tự chủ và hướng câu chuyện về các tiêu chí cải tiến thực chất.',
+        recommendedPhrasing: '"Dạ em xin ghi nhận ý kiến chỉ đạo của anh. Em sẽ rà soát lại ngay phương pháp tính số liệu. Sau cuộc họp này, em xin phép gặp riêng anh 15 phút để xin chỉ đạo cụ thể hơn về các tiêu chí trọng tâm anh muốn điều chỉnh ạ."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc2-opt-c',
+        text: 'Cúi gằm mặt xuống khóc nức nở và liên tục nói xin lỗi trong suốt buổi họp.',
+        quality: 'poor',
+        feedbackTitle: 'Chưa phù hợp - Bộc lộ sự thiếu kiểm soát cảm xúc nơi công sở',
+        feedbackDescription: 'Dù phản ứng này dễ hiểu về mặt con người, nhưng nơi công sở chuyên nghiệp, sự suy sụp cảm xúc khiến buổi họp bị gián đoạn và người lãnh đạo khó có thể tin tưởng giao phó các nhiệm vụ lớn trong tương lai.',
+        recommendedPhrasing: 'Cố gắng giữ vẻ mặt trung tính, nếu cảm thấy không chịu nổi hãy xin phép ra ngoài rửa mặt trong 2 phút rồi trở lại.',
+        scoreAwarded: 5
+      }
+    ]
+  },
+  {
+    id: 'scenario-3',
+    order: 3,
+    category: 'Giao tiếp với khách hàng và đối tác',
+    title: 'Khách hàng VIP tức giận quát tháo vì sự cố gián đoạn dịch vụ',
+    characterRole: 'Chuyên viên Quan hệ Khách hàng Doanh nghiệp (Account Manager)',
+    context: 'Hệ thống phần mềm quản lý của công ty bạn gặp sự cố máy chủ lúc 10:00 sáng. Giám đốc một tập đoàn đối tác lớn gọi điện thoại cho bạn, giận dữ quát tháo trong máy vì toàn bộ 20 chi nhánh của họ không thể xuất hóa đơn cho khách, đe dọa sẽ kiện ra tòa và chấm dứt hợp đồng ngay lập tức.',
+    problemStatement: 'Bạn xử lý cuộc gọi khẩn cấp này như thế nào để giữ chân khách hàng và hạ nhiệt cơn giận?',
+    options: [
+      {
+        id: 'sc3-opt-a',
+        text: 'Lập tức ngắt lời khách: "Anh bình tĩnh lại đi, máy chủ do nhà mạng FPT bị đứt cáp quang chứ bên em có muốn thế đâu, anh quát tháo cũng không giải quyết được gì!"',
+        quality: 'poor',
+        feedbackTitle: 'Sai lầm nghiêm trọng - Đổ dầu vào lửa',
+        feedbackDescription: 'Ngắt lời và bảo khách hàng "hãy bình tĩnh" là cách nhanh nhất khiến họ bùng nổ hơn. Việc đổ lỗi cho bên thứ ba làm công ty bạn thể hiện sự thiếu trách nhiệm trước hợp đồng.',
+        recommendedPhrasing: 'Lắng nghe trọn vẹn, thừa nhận sự bất tiện trước khi đưa ra thông tin kỹ thuật.',
+        scoreAwarded: 0
+      },
+      {
+        id: 'sc3-opt-b',
+        text: 'Lắng nghe không ngắt lời, đồng cảm sâu sắc với tổn thất của khách, xin lỗi chân thành về trải nghiệm gián đoạn và cập nhật mốc thời gian khắc phục cụ thể theo từng 30 phút.',
+        quality: 'best',
+        feedbackTitle: 'Đỉnh cao kỹ năng chăm sóc khách hàng và kiểm soát khủng hoảng',
+        feedbackDescription: 'Khách hàng cần cảm thấy sự việc của họ được ưu tiên số một. Việc lắng nghe giúp xả bớt cơn giận, lời xin lỗi thể hiện tinh thần trách nhiệm của thương hiệu, và cam kết cập nhật tiến độ thường xuyên tạo lại sự an tâm kiểm soát.',
+        recommendedPhrasing: '"Em hoàn toàn thấu hiểu mức độ nghiêm trọng khi 20 chi nhánh của anh bị gián đoạn bán hàng lúc này. Em xin nhận trách nhiệm và chân thành xin lỗi anh cùng toàn thể tập đoàn. Hiện tại đội ngũ kỹ sư cao cấp nhất đang tập trung xử lý. Em cam kết cứ mỗi 30 phút sẽ trực tiếp gọi điện báo cáo tiến độ cho anh cho đến khi hệ thống vận hành trở lại."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc3-opt-c',
+        text: 'Hứa bừa với khách rằng trong 5 phút nữa hệ thống sẽ chạy lại bình thường để khách cúp máy, dù chưa hỏi đội kỹ thuật.',
+        quality: 'poor',
+        feedbackTitle: 'Tối kỵ trong đối ngoại - Đánh mất hoàn toàn uy tín',
+        feedbackDescription: 'Khi hết 5 phút mà hệ thống vẫn chết, cơn thịnh nộ của khách hàng sẽ nhân lên gấp 10 lần và họ sẽ coi bạn là kẻ dối trá.',
+        recommendedPhrasing: 'Chỉ đưa ra mốc thời gian khi đã xác nhận với bộ phận kỹ thuật, hoặc cam kết mốc thời gian báo cáo.',
+        scoreAwarded: 5
+      }
+    ]
+  },
+  {
+    id: 'scenario-4',
+    order: 4,
+    category: 'Xử lý mâu thuẫn và tình huống khó',
+    title: 'Bất đồng quan điểm gay gắt trong cuộc họp chiến lược quý',
+    characterRole: 'Trưởng nhóm Marketing trong cuộc họp với Trưởng nhóm Bán hàng (Sales)',
+    context: 'Trong cuộc họp đánh giá kết quả quý 3, Trưởng nhóm Sales tuyên bố thẳng thừng: "Doanh số không đạt là do chất lượng khách hàng tiềm năng (Leads) từ đội Marketing gửi sang quá tệ, toàn số ảo, không có nhu cầu thực tế." Cả phòng họp đổ dồn ánh mắt về phía bạn.',
+    problemStatement: 'Bạn phản hồi như thế nào để bảo vệ đội ngũ của mình mà không biến cuộc họp thành một trận tranh cãi phòng ban?',
+    options: [
+      {
+        id: 'sc4-opt-a',
+        text: 'Tấn công lại: "Đội Sales lười biếng gọi điện chăm sóc khách hàng rồi lại đổ vạ cho Marketing! Số liệu báo cáo tỷ lệ chuyển đổi của các bạn thấp nhất lịch sử kìa."',
+        quality: 'poor',
+        feedbackTitle: 'Phản ứng bản năng - Gây chia rẽ nội bộ trầm trọng',
+        feedbackDescription: 'Cuộc tranh luận sẽ rơi vào bẫy "đổ lỗi qua lại" (Blame Game), làm mất phương hướng cuộc họp và khiến ban lãnh đạo ngán ngẩm về năng lực phối hợp của cả hai bên.',
+        recommendedPhrasing: 'Nói chuyện bằng số liệu thực tế và quy trình chuẩn thay vì cảm tính.',
+        scoreAwarded: 5
+      },
+      {
+        id: 'sc4-opt-b',
+        text: 'Dùng dữ liệu khách quan để làm rõ hiện trạng, đồng thời đề xuất cơ chế phối hợp rà soát chung tiêu chí định nghĩa Lead chuẩn.',
+        quality: 'best',
+        feedbackTitle: 'Xuất sắc - Tư duy hợp tác giải quyết vấn đề (Solution-Driven)',
+        feedbackDescription: 'Bằng cách đưa ra số liệu đo lường cụ thể và mời đội Sales cùng ngồi lại chuẩn hóa tiêu chuẩn đánh giá, bạn vừa bảo vệ được uy tín chuyên môn vừa biến xung đột thành cơ hội cải tiến quy trình bán hàng liên phòng ban.',
+        recommendedPhrasing: '"Cảm ơn phản hồi thực tế từ anh Tuấn. Theo thống kê hệ thống CRM, 68% leads tháng qua đáp ứng đúng tiêu chuẩn chân dung khách hàng đã thống nhất giữa 2 bên. Tuy nhiên, nếu tỷ lệ chốt đơn đang giảm, em xin đề xuất tuần này hai nhóm cử đại diện ngồi lại nghe thử 30 cuộc gọi mẫu để cùng cập nhật lại tiêu chuẩn lọc khách và kịch bản tư vấn phù hợp nhất."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc4-opt-c',
+        text: 'Nhận hết lỗi về phía đội Marketing để cuộc họp nhanh chóng kết thúc trong êm đẹp.',
+        quality: 'acceptable',
+        feedbackTitle: 'Dĩ hòa vi quý sai lầm - Gây thiệt thòi cho đồng đội',
+        feedbackDescription: 'Nhận lỗi oan khiến tinh thần các thành viên đội Marketing bị suy sụp vì công sức bị phủ nhận, đồng thời vấn đề thực sự của quy trình chốt đơn không được giải quyết triệt để.',
+        recommendedPhrasing: 'Tôn trọng sự thật khách quan và bảo vệ công sức chính đáng của cấp dưới bằng số liệu.',
+        scoreAwarded: 15
+      }
+    ]
+  },
+  {
+    id: 'scenario-5',
+    order: 5,
+    category: 'Giao tiếp qua email, điện thoại và cuộc họp',
+    title: 'Nhận được email từ đối tác có giọng điệu khiêu khích và thiếu thiện chí',
+    characterRole: 'Điều phối viên quản lý hợp đồng',
+    context: 'Bạn nhận được một email từ đại diện bên đối tác cung ứng với ngôn từ nặng nề: "Làm việc với quý công ty thực sự quá thất vọng! Một việc cỏn con như gửi bảng đối chiếu công nợ mà chậm trễ đến 3 ngày. Tôi nghi ngờ năng lực chuyên môn của đội ngũ quý vị!" Email này còn được CC cho Giám đốc của bạn.',
+    problemStatement: 'Máu trong người bạn sôi lên vì thực tế chính đối tác gửi thiếu chứng từ hóa đơn gốc nên bạn mới chưa thể lập bảng đối chiếu. Bạn sẽ hồi đáp email này ra sao?',
+    options: [
+      {
+        id: 'sc5-opt-a',
+        text: 'Hồi đáp ngay lập tức bằng giọng điệu đanh thép, bóc mẽ sự đãng trí của đối tác và CC thêm cho toàn bộ ban giám đốc hai bên.',
+        quality: 'poor',
+        feedbackTitle: 'Thiếu kiềm chế - Làm bùng nổ xung đột ngoại giao',
+        feedbackDescription: 'Viết email trong lúc giận dữ luôn dẫn đến ngôn từ bất cẩn. Dù bạn có lý, việc ăn miếng trả miếng công khai sẽ khiến đối tác mất mặt và ban lãnh đạo đánh giá bạn thiếu chín chắn.',
+        recommendedPhrasing: 'Quy tắc 24h hoặc ít nhất đợi 1 tiếng để cảm xúc lắng xuống trước khi soạn email.',
+        scoreAwarded: 5
+      },
+      {
+        id: 'sc5-opt-b',
+        text: 'Chờ 30 phút cho bình tâm, soạn thảo phản hồi lịch sự, đính kèm bằng chứng email cũ nhắc nhở chứng từ, tập trung vào giải pháp hoàn tất hồ sơ ngay trong ngày.',
+        quality: 'best',
+        feedbackTitle: 'Chuẩn mực văn hóa thư tín công sở - Thấu tình đạt lý',
+        feedbackDescription: 'Một email ngắn gọn, chuyên nghiệp, không chấp nhặt lời công kích, chỉ viện dẫn sự thật bằng file đính kèm một cách nhã nhặn sẽ khiến người gửi email khiêu khích tự cảm thấy ngượng ngùng và tôn trọng bạn hơn.',
+        recommendedPhrasing: '"Kính gửi Anh/Chị Hoàng, Em rất thấu hiểu sự sốt ruột của anh/chị về bảng công nợ tháng này. Như đã trao đổi trong email ngày 14/10 (em xin phép đính kèm lại bên dưới), bộ phận Kế toán cần bổ sung 03 hóa đơn VAT số 012, 015, 018 từ phía quý công ty để khớp số liệu. Hiện tại em đã nhận đủ lúc 9h sáng nay và đang khẩn trương lập bảng đối chiếu để gửi anh trước 15:00 hôm nay ạ."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc5-opt-c',
+        text: 'Xóa email đi và không thèm trả lời để đối tác tự biết mình sai.',
+        quality: 'poor',
+        feedbackTitle: 'Thái độ thụ động - Biến mình thành người sai',
+        feedbackDescription: 'Im lặng trước một email có CC ban giám đốc sẽ khiến lãnh đạo nghĩ rằng bạn thực sự tắc trách và không có năng lực xử lý vấn đề.',
+        recommendedPhrasing: 'Mọi cáo buộc bằng văn bản cần được phản hồi minh bạch, lịch thiệp bằng văn bản.',
+        scoreAwarded: 0
+      }
+    ]
+  },
+  {
+    id: 'scenario-6',
+    order: 6,
+    category: 'Tác phong, kỷ luật và trách nhiệm',
+    title: 'Phát hiện sai sót số liệu tài chính quan trọng trong báo cáo đã nộp cho Ban Giám đốc',
+    characterRole: 'Chuyên viên phân tích tài chính',
+    context: 'Lúc 16:30, sau khi bản báo cáo tài chính quý đã được gửi chính thức cho toàn thể Hội đồng Quản trị và Ban Giám đốc, bạn bất ngờ phát hiện một công thức Excel bị nhảy dòng, khiến doanh thu dự phóng bị tính thừa 1,2 tỷ đồng. Ngày mai là cuộc họp đại hội cổ đông.',
+    problemStatement: 'Bạn đang đứng trước một tình thế tiến thoái lưỡng nan. Bạn sẽ làm gì ngay lúc này?',
+    options: [
+      {
+        id: 'sc6-opt-a',
+        text: 'Cầu mong không ai nhận ra lỗi này và giữ im lặng, nếu ngày mai có ai hỏi thì nói là do phần mềm kế toán tự động cập nhật sai số liệu.',
+        quality: 'poor',
+        feedbackTitle: 'Vi phạm nghiêm trọng tính chính trực nghề nghiệp',
+        feedbackDescription: 'Che giấu lỗi tài chính là con đường ngắn nhất dẫn đến việc bị sa thải và đánh mất toàn bộ tương lai nghề nghiệp khi sự thật bị phanh phui trong đại hội.',
+        recommendedPhrasing: 'Lòng chính trực được đo lường bằng việc dám thừa nhận sai lầm khi chưa ai phát hiện.',
+        scoreAwarded: 0
+      },
+      {
+        id: 'sc6-opt-b',
+        text: 'Lập tức báo cáo trực tiếp với Trưởng phòng của mình, trình bày rõ nguyên nhân sai sót kèm theo bản báo cáo đã được đính chính hoàn chỉnh và bảng so sánh chênh lệch.',
+        quality: 'best',
+        feedbackTitle: 'Dũng cảm, trung thực và trách nhiệm tối đa',
+        feedbackDescription: 'Thừa nhận sai lầm sớm trước khi cuộc họp diễn ra giúp ban lãnh đạo có đủ thời gian in lại tài liệu hoặc chuẩn bị phương án đính chính, hạn chế tối đa rủi ro pháp lý và danh tiếng cho công ty.',
+        recommendedPhrasing: '"Thưa anh, em vừa rà soát lại và phát hiện một lỗi công thức tính thừa 1,2 tỷ doanh thu dự phóng ở trang 14. Em xin hoàn toàn nhận trách nhiệm về sự bất cẩn này. Em đã sửa xong file chuẩn, lập sẵn bảng ghi chú đính chính ngắn 1 trang để xin ý kiến anh gửi lại cho Ban Giám đốc ngay ạ."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc6-opt-c',
+        text: 'Tự ý gửi một email thu hồi (Recall) không giải thích gì cả và gửi file mới đè lên.',
+        quality: 'acceptable',
+        feedbackTitle: 'Chưa đủ chu đáo - Gây hoang mang cho người nhận',
+        feedbackDescription: 'Thu hồi email báo cáo quan trọng mà không thông báo trực tiếp cho cấp trên trực tiếp sẽ khiến lãnh đạo đặt dấu hỏi về tính chuyên nghiệp và gây nghi ngờ.',
+        recommendedPhrasing: 'Cần thông qua người quản lý trực tiếp trước khi phát hành phiên bản đính chính ra diện rộng.',
+        scoreAwarded: 15
+      }
+    ]
+  },
+  {
+    id: 'scenario-7',
+    order: 7,
+    category: 'Giao tiếp với cấp trên',
+    title: 'Được giao nhiệm vụ khẩn vượt quá thời hạn và năng lực đáp ứng thực tế',
+    characterRole: 'Nhân viên thiết kế đồ họa & truyền thông',
+    context: 'Thứ 6 lúc 17:00, Trưởng phòng truyền thông gọi bạn vào và giao một tập tài liệu dày 50 trang, yêu cầu thiết kế toàn bộ ấn phẩm nhận diện thương hiệu cho sự kiện sáng thứ 2 tuần tới, trong khi bạn đã có lịch làm việc kín từ trước.',
+    problemStatement: 'Nếu nhận lời mà không làm kịp, sự kiện sẽ hỏng; nếu từ chối thô thiển, sếp sẽ nghĩ bạn thiếu nhiệt huyết cống hiến. Bạn xử lý ra sao?',
+    options: [
+      {
+        id: 'sc7-opt-a',
+        text: 'Gật đầu đồng ý ngay tắp lự nhưng trong bụng biết chắc chắn không thể làm nổi, rồi thứ 2 nộp một bản nháp qua loa chưa hoàn thiện.',
+        quality: 'poor',
+        feedbackTitle: 'Làm vừa lòng trước mắt nhưng phá hoại công việc chung',
+        feedbackDescription: 'Đây là thói quen xấu phổ biến ở người mới đi làm: Sợ từ chối nên nhận việc quá tải, để rồi bàn giao sản phẩm kém chất lượng làm lỡ dở sự kiện lớn.',
+        recommendedPhrasing: 'Học cách từ chối khéo léo hoặc thương lượng lại phạm vi công việc.',
+        scoreAwarded: 5
+      },
+      {
+        id: 'sc7-opt-b',
+        text: 'Từ chối thẳng thừng: "Đã hết giờ làm việc rồi, sếp giao gấp thế này không ai làm được đâu, em không nhận!"',
+        quality: 'poor',
+        feedbackTitle: 'Giao tiếp cứng nhắc, thiếu linh hoạt và tinh thần đồng đội',
+        feedbackDescription: 'Phản ứng này thể hiện thái độ tiêu cực, thiếu sự thấu cảm với áp lực chung của công ty trong các giai đoạn dầu sôi lửa bỏng.',
+        recommendedPhrasing: 'Cần phân tích nguồn lực và đưa ra các lựa chọn thay thế khả thi.',
+        scoreAwarded: 5
+      },
+      {
+        id: 'sc7-opt-c',
+        text: 'Giải thích rõ ràng về khối lượng công việc, đề xuất phương án ưu tiên thiết kế các hạng mục quan trọng nhất trước (backdrop, thư mời) và xin huy động thêm cộng tác viên bên ngoài.',
+        quality: 'best',
+        feedbackTitle: 'Kỹ năng thương lượng công việc và quản trị kỳ vọng bậc thầy',
+        feedbackDescription: 'Bạn không từ chối thiện chí giải quyết bài toán của sếp, mà bạn giúp sếp nhìn thấy bức tranh thực tế về thời gian và đưa ra giải pháp thực tế để sự kiện vẫn thành công tốt đẹp.',
+        recommendedPhrasing: '"Dạ thưa chị, để thiết kế chỉn chu trọn vẹn 50 trang cần tối thiểu 3 ngày làm việc. Nếu gấp cho sáng thứ 2, em xin đề xuất: Em sẽ ưu tiên hoàn thiện trước 100% các hạng mục cốt lõi cần in ấn sớm như Backdrop và Thư mời trong tối nay và ngày mai; các ấn phẩm phụ còn lại em xin phép nhờ thêm bạn freelance hỗ trợ hoặc bàn giao vào trưa thứ 2 để kịp tiến độ sự kiện ạ."',
+        scoreAwarded: 40
+      }
+    ]
+  },
+  {
+    id: 'scenario-8',
+    order: 8,
+    category: 'Đạo đức nghề nghiệp, bảo mật và ứng xử trên môi trường số',
+    title: 'Vô tình nhận được tài liệu nhân sự mật về kế hoạch điều chỉnh lương thưởng',
+    characterRole: 'Chuyên viên quản trị dữ liệu',
+    context: 'Bộ phận Hành chính - Nhân sự gửi nhầm một email có đính kèm file Excel chứa toàn bộ bảng lương hiện tại và mức thưởng Tết dự kiến của tất cả nhân sự trong công ty vào hòm thư của bạn thay vì gửi cho Giám đốc Nhân sự.',
+    problemStatement: 'File tài liệu cực kỳ nhạy cảm đang nằm ngay trên máy của bạn. Bạn xử lý như thế nào?',
+    options: [
+      {
+        id: 'sc8-opt-a',
+        text: 'Tải ngay file về máy tính cá nhân, mở ra xem mức lương của các sếp và đồng nghiệp cùng phòng, sau đó rỉ tai kể cho đồng nghiệp thân nhất nghe.',
+        quality: 'poor',
+        feedbackTitle: 'Vi phạm đạo đức nghề nghiệp và chính sách bảo mật nghiêm trọng',
+        feedbackDescription: 'Bàn tán về thu nhập cá nhân của người khác gây xáo trộn tâm lý tập thể, tạo sự đố kỵ và là hành vi vi phạm thỏa thuận bảo mật có thể bị sa thải ngay lập tức.',
+        recommendedPhrasing: 'Tuyệt đối tôn trọng quyền riêng tư và thông tin nhạy cảm của tổ chức.',
+        scoreAwarded: 0
+      },
+      {
+        id: 'sc8-opt-b',
+        text: 'Không tải, không phát tán thông tin; lập tức phản hồi riêng cho người gửi để họ nắm được sự cố gửi nhầm, xóa vĩnh viễn email và cam kết bảo mật nội dung.',
+        quality: 'best',
+        feedbackTitle: 'Đỉnh cao của sự chính trực và đạo đức nghề nghiệp',
+        feedbackDescription: 'Hành động này thể hiện nhân cách cao đẹp và sự đáng tin cậy tuyệt đối của một nhân viên chuyên nghiệp. Người gửi sẽ vô cùng biết ơn bạn và ban lãnh đạo sẽ đánh giá rất cao tính chính trực của bạn.',
+        recommendedPhrasing: '"Chào chị Mai, Em xin thông báo là email vừa rồi của chị có đính kèm tài liệu nhân sự mật dường như bị gửi nhầm địa chỉ đến em. Em xin xác nhận là chưa tải hay chia sẻ nội dung này cho bất kỳ ai, và em đã tiến hành xóa vĩnh viễn email này khỏi hộp thư của em để bảo đảm tính bảo mật của phòng Nhân sự ạ."',
+        scoreAwarded: 40
+      },
+      {
+        id: 'sc8-opt-c',
+        text: 'Chuyển tiếp (forward) email đó cho sếp của bạn để nhờ sếp xử lý hộ.',
+        quality: 'acceptable',
+        feedbackTitle: 'Làm rò rỉ thông tin thêm một vòng không cần thiết',
+        feedbackDescription: 'Mặc dù ý định tốt, việc chuyển tiếp lại vô tình làm phát tán thông tin mật tới thêm một người nữa trong khi người đó cũng không có thẩm quyền nhận tài liệu đó.',
+        recommendedPhrasing: 'Nên giải quyết kín đáo trực tiếp với người gửi để khoanh vùng sự cố rò rỉ.',
+        scoreAwarded: 15
+      }
+    ]
+  }
+];
+
+export const INITIAL_QUIZ_QUESTIONS: QuizQuestion[] = [
+  // Topic 1: Văn hóa & Kỷ luật công sở (Q1 - Q5)
+  {
+    id: 'q-1',
+    topicId: 'topic-culture',
+    question: 'Theo mô hình văn hóa doanh nghiệp của Edgar Schein, tầng văn hóa nào sau đây dễ quan sát và nhận biết nhất từ bên ngoài?',
+    options: [
+      'Tầng giả định căn bản ngầm hiểu',
+      'Tầng các giá trị được tuyên bố và chiến lược',
+      'Tầng các hiện vật hữu hình (Artifacts) như trang phục, kiến trúc, nghi lễ',
+      'Tầng đạo đức vô thức của nhân viên'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Tầng hiện vật hữu hình (Artifacts) gồm kiến trúc, logo, đồng phục, cách bài trí văn phòng là những yếu tố bề nổi dễ nhìn thấy nhất.',
+    relatedLessonId: 'lesson-1'
+  },
+  {
+    id: 'q-2',
+    topicId: 'topic-culture',
+    question: 'Khi nhận thấy một nhiệm vụ có nguy cơ trễ hạn cam kết (deadline), nguyên tắc "Cảnh báo sớm" (Early Warning) yêu cầu điều gì?',
+    options: [
+      'Chờ đến đúng ngày đến hạn mới thông báo để không làm sếp lo lắng sớm',
+      'Chủ động thông báo ngay khi nhận diện rủi ro, nêu rõ lý do và đề xuất kèm phương án giải quyết',
+      'Âm thầm bỏ bớt một số công đoạn để nộp đúng giờ dù chất lượng không đạt',
+      'Giao lại nhiệm vụ cho đồng nghiệp khác mà không báo trước'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Cảnh báo sớm giúp cả tập thể có thời gian huy động phương án dự phòng và thể hiện tinh thần làm chủ trách nhiệm (Accountability).',
+    relatedLessonId: 'lesson-2'
+  },
+  {
+    id: 'q-3',
+    topicId: 'topic-culture',
+    question: 'Quy chuẩn trang phục "Business Casual" trong môi trường văn phòng tiêu chuẩn thường bao gồm những trang phục nào?',
+    options: [
+      'Quần đùi thể thao phối với áo thun sát nách và dép xỏ ngón',
+      'Vest dạ hội sang trọng kèm trang sức lấp lánh',
+      'Áo sơ mi hoặc áo polo có cổ, quần âu/chân váy thanh lịch, giày kín mũi',
+      'Đồ ngủ mặc nhà thoải mái để tăng cảm hứng sáng tạo'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Business Casual duy trì nét thanh lịch, lịch sự, gọn gàng nhưng thoải mái hơn so với trang phục vest cà vạt trang trọng (Business Formal).',
+    relatedLessonId: 'lesson-3'
+  },
+  {
+    id: 'q-4',
+    topicId: 'topic-culture',
+    question: 'Khái niệm "Accountability" (Trách nhiệm giải trình) khác biệt căn bản với "Responsibility" (Trách nhiệm thực thi) ở điểm nào?',
+    options: [
+      'Accountability chỉ dành cho bảo vệ và tạp vụ',
+      'Responsibility là người thực hiện công việc, còn Accountability là người chịu trách nhiệm cuối cùng về kết quả đầu ra',
+      'Không có bất kỳ sự khác biệt nào giữa hai khái niệm này',
+      'Accountability là việc đổ lỗi cho người khác khi thất bại'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Bạn có thể ủy quyền thực thi công việc (Responsibility), nhưng không thể ủy quyền trách nhiệm giải trình về kết quả cuối cùng (Accountability).',
+    relatedLessonId: 'lesson-2'
+  },
+  {
+    id: 'q-5',
+    topicId: 'topic-culture',
+    question: 'Quy tắc vàng về giờ giấc khi tham dự các cuộc họp quan trọng hoặc gặp gỡ đối tác là gì?',
+    options: [
+      'Có mặt đúng từng giây theo lịch trình',
+      'Đến trễ 10 phút để chứng tỏ mình là người bận rộn và quan trọng',
+      'Có mặt hoặc kết nối phòng họp trực tuyến trước 5-10 phút để ổn định vị trí và kiểm tra kỹ thuật',
+      'Chờ người chủ trì gọi điện hối thúc mới bắt đầu di chuyển'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Đến sớm 5-10 phút thể hiện sự tôn trọng thời gian của người khác và sự chuẩn bị nghiêm túc, chu đáo.',
+    relatedLessonId: 'lesson-3'
+  },
+
+  // Topic 2: Giao tiếp Cấp trên & Đồng nghiệp (Q6 - Q10)
+  {
+    id: 'q-6',
+    topicId: 'topic-interpersonal',
+    question: 'Khi báo cáo công việc cho lãnh đạo cấp cao bận rộn, mô hình BLUF (Bottom Line Up Front) khuyên bạn nên làm gì?',
+    options: [
+      'Kể chi tiết mọi khó khăn từ thời gian bắt đầu đến lúc kết thúc',
+      'Nêu ngay thông điệp cốt lõi, kết quả chính hoặc yêu cầu quyết định ở ngay câu đầu tiên',
+      'Gửi một tài liệu không tóm tắt để sếp tự đọc và tìm hiểu',
+      'Hỏi sếp xem hôm nay tâm trạng của sếp có tốt không trước khi nói chuyện'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'BLUF giúp người lãnh đạo bận rộn nắm ngay được trọng tâm vấn đề để đưa ra quyết định mà không mất thời gian đọc những đoạn văn dài dòng.',
+    relatedLessonId: 'lesson-4'
+  },
+  {
+    id: 'q-7',
+    topicId: 'topic-interpersonal',
+    question: 'Tư duy "Solution-Oriented" (Định hướng giải pháp) khi làm việc với cấp trên đòi hỏi nhân viên phải làm gì khi gặp sự cố?',
+    options: [
+      'Chỉ nêu khó khăn và hỏi "Bây giờ làm thế nào ạ sếp?"',
+      'Giấu nhẹm sự cố để sếp không phải lo nghĩ',
+      'Phân tích vấn đề, chuẩn bị sẵn tối thiểu 2 phương án giải quyết kèm ưu/nhược điểm trước khi xin ý kiến sếp',
+      'Tự ý đưa ra quyết định vượt thẩm quyền mà không báo cáo'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Người nhân viên xuất sắc luôn mang đến giải pháp chứ không chỉ mang đến câu hỏi mở làm tăng thêm gánh nặng cho cấp trên.',
+    relatedLessonId: 'lesson-4'
+  },
+  {
+    id: 'q-8',
+    topicId: 'topic-interpersonal',
+    question: 'Trong mô hình phản hồi SBI, ba chữ cái viết tắt của các từ tiếng Anh nào?',
+    options: [
+      'Strategy - Business - Investment',
+      'Situation (Bối cảnh) - Behavior (Hành vi) - Impact (Tác động)',
+      'Solution - Benefit - Incentive',
+      'Standard - Best - Ideal'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'SBI gồm Bối cảnh cụ thể (Situation), Hành vi quan sát được (Behavior), và Tác động khách quan (Impact) của hành vi đó.',
+    relatedLessonId: 'lesson-7'
+  },
+  {
+    id: 'q-9',
+    topicId: 'topic-interpersonal',
+    question: 'Kỹ thuật "Paraphrasing" (Diễn giải lại) trong lắng nghe tích cực có tác dụng gì?',
+    options: [
+      'Lặp lại từng từ như con vẹt để trêu chọc đối phương',
+      'Tóm tắt lại ý chính bằng ngôn từ của mình để xác nhận xem mình đã hiểu đúng thông điệp của người nói hay chưa',
+      'Ngắt lời đối phương để thể hiện mình thông minh hơn',
+      'Ghi âm cuộc nói chuyện mà không xin phép'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Paraphrasing giúp loại bỏ hiểu lầm và thể hiện rằng bạn đang thực sự tập trung lắng nghe với thái độ cầu thị.',
+    relatedLessonId: 'lesson-7'
+  },
+  {
+    id: 'q-10',
+    topicId: 'topic-interpersonal',
+    question: 'Quy tắc vàng khi khen ngợi và góp ý đồng nghiệp là gì?',
+    options: [
+      'Khen ngợi nơi riêng tư, phê bình gay gắt nơi công cộng để răn đe',
+      'Khen ngợi công khai trước tập thể, góp ý điều chỉnh ở không gian riêng tư (Praise in public, criticize in private)',
+      'Không bao giờ khen ngợi để tránh người khác kiêu ngạo',
+      'Chỉ góp ý qua tin nhắn ẩn danh trên mạng xã hội'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Khen công khai để tạo động lực, góp ý riêng tư để bảo vệ lòng tự trọng và sự tôn nghiêm của đồng nghiệp.',
+    relatedLessonId: 'lesson-7'
+  },
+
+  // Topic 3: Email, Cuộc họp & Đối ngoại (Q11 - Q15)
+  {
+    id: 'q-11',
+    topicId: 'topic-communication-tools',
+    question: 'Trong việc gửi email công việc, chức năng BCC (Blind Carbon Copy) KHÔNG NÊN sử dụng trong trường hợp nào sau đây?',
+    options: [
+      'Gửi thư tin tức hoặc thông báo tới hàng trăm khách hàng để bảo vệ quyền riêng tư địa chỉ email của họ',
+      'Bí mật gửi cho người khác để rình rập hoặc bẫy đồng nghiệp trong một cuộc tranh cãi',
+      'Gửi thông báo đối ngoại cho các đối tác không liên quan đến nhau',
+      'Tự gửi một bản sao lưu vào hòm thư phụ của chính mình'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'BCC ngầm để mách lẻo hoặc bẫy đồng nghiệp bị coi là hành vi thiếu chính trực và phá hoại niềm tin trong tổ chức.',
+    relatedLessonId: 'lesson-8'
+  },
+  {
+    id: 'q-12',
+    topicId: 'topic-communication-tools',
+    question: 'Hành động viết hoa TOÀN BỘ CHỮ TRONG EMAIL hoặc tin nhắn công việc mang sắc thái tâm lý nào?',
+    options: [
+      'Thể hiện sự kính trọng đặc biệt đối với người nhận',
+      'Tương đương với hành vi la hét, quát tháo giận dữ vào mặt người đối diện',
+      'Giúp người nhận đọc dễ hơn khi mắt kém',
+      'Là chuẩn mực bắt buộc trong các văn bản ngoại giao quốc tế'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Trong văn hóa mạng (Netiquette), việc gõ ALL CAPS bị coi là hành vi to tiếng, thiếu kiềm chế và hung hăng.',
+    relatedLessonId: 'lesson-8'
+  },
+  {
+    id: 'q-13',
+    topicId: 'topic-communication-tools',
+    question: 'Yếu tố nào sau đây là BẮT BUỘC phải có trước khi tổ chức một cuộc họp hiệu quả?',
+    options: [
+      'Đồ ăn nhẹ và nước ngọt đắt tiền',
+      'Chương trình họp rõ ràng (Agenda) kèm mục tiêu cụ thể và tài liệu gửi trước cho người tham dự',
+      'Sự tham dự của toàn thể tất cả nhân viên công ty',
+      'Không cần chuẩn bị gì để cuộc họp diễn ra tự nhiên'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Agenda rõ ràng và gửi tài liệu trước giúp các thành viên nghiên cứu kỹ, thảo luận trúng đích và tiết kiệm thời gian.',
+    relatedLessonId: 'lesson-8'
+  },
+  {
+    id: 'q-14',
+    topicId: 'topic-communication-tools',
+    question: 'Khi đón tiếp đối tác và trao nhận danh thiếp (Namecard), hành động nào sau đây là chuẩn mực?',
+    options: [
+      'Cầm một tay rồi bỏ ngay vào túi quần phía sau',
+      'Dùng bút viết số điện thoại cá nhân đè lên mặt trước của danh thiếp',
+      'Trao và nhận bằng hai tay, mặt chữ hướng về phía đối tác, dành vài giây đọc trân trọng rồi đặt ngay ngắn trên bàn',
+      'Từ chối nhận và bảo đối tác quét mã Zalo cá nhân'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Trao nhận bằng hai tay và đọc danh tính đối tác thể hiện sự trân trọng và chuyên nghiệp trong ngoại giao kinh doanh.',
+    relatedLessonId: 'lesson-6'
+  },
+  {
+    id: 'q-15',
+    topicId: 'topic-communication-tools',
+    question: 'Thời gian phản hồi tiêu chuẩn cho một email công việc nội bộ quan trọng thông thường là bao lâu?',
+    options: [
+      'Trong vòng 1 tuần',
+      'Trong vòng 24 giờ làm việc',
+      'Bất cứ khi nào rảnh thì trả lời, không cần quy chuẩn',
+      'Tối thiểu 30 ngày'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Phản hồi trong vòng 24 giờ làm việc là quy chuẩn thể hiện sự tôn trọng và duy trì nhịp độ phối hợp trơn tru.',
+    relatedLessonId: 'lesson-8'
+  },
+
+  // Topic 4: Xung đột, Đạo đức số & Bảo mật (Q16 - Q20)
+  {
+    id: 'q-16',
+    topicId: 'topic-ethics-conflicts',
+    question: 'Khi xảy ra tranh luận chuyên môn gay gắt, nguyên tắc "Tách biệt con người khỏi vấn đề" có nghĩa là gì?',
+    options: [
+      'Đuổi người đó ra khỏi phòng họp rồi mới tiếp tục giải quyết vấn đề',
+      'Tập trung vào dữ liệu, sự thật và phương án công việc thay vì công kích tính cách, đạo đức của người tranh luận',
+      'Không quan tâm đến cảm xúc của ai cả',
+      'Đổ toàn bộ trách nhiệm cho khách hàng'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Tách con người khỏi vấn đề giúp giữ gìn mối quan hệ đồng nghiệp tốt đẹp trong khi vẫn đào sâu tìm ra phương án tối ưu.',
+    relatedLessonId: 'lesson-9'
+  },
+  {
+    id: 'q-17',
+    topicId: 'topic-ethics-conflicts',
+    question: 'Theo mô hình Thomas-Kilmann (TKI), phong cách giải quyết xung đột nào hướng đến giải pháp "Thắng - Thắng" (Win - Win)?',
+    options: [
+      'Tránh né (Avoiding)',
+      'Hợp tác (Collaborating)',
+      'Cạnh tranh áp đặt (Competing)',
+      'Nhượng bộ hoàn toàn (Accommodating)'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Phong cách Hợp tác (Collaborating) đòi hỏi hai bên cùng cởi mở tìm kiếm giải pháp thỏa mãn tối đa lợi ích của cả hai bên.',
+    relatedLessonId: 'lesson-9'
+  },
+  {
+    id: 'q-18',
+    topicId: 'topic-ethics-conflicts',
+    question: 'Hành động nào sau đây bị coi là vi phạm nghiêm trọng quy định an toàn thông tin tại nơi làm việc?',
+    options: [
+      'Khóa màn hình máy tính (Lock screen) khi rời khỏi bàn làm việc',
+      'Đổi mật khẩu định kỳ theo yêu cầu của hệ thống IT',
+      'Tự ý chuyển tiếp file danh sách khách hàng và dữ liệu doanh thu nội bộ về hòm thư điện tử cá nhân',
+      'Kiểm tra kỹ đường link trước khi nhấp vào email lạ'
+    ],
+    correctAnswerIndex: 2,
+    explanation: 'Tự ý chuyển dữ liệu nội bộ ra hòm thư cá nhân vi phạm nghiêm trọng cam kết bảo mật và có thể bị kỷ luật hoặc xử lý pháp luật.',
+    relatedLessonId: 'lesson-10'
+  },
+  {
+    id: 'q-19',
+    topicId: 'topic-ethics-conflicts',
+    question: 'Khi chia sẻ thông tin hoặc phát ngôn trên mạng xã hội cá nhân (Facebook, LinkedIn, TikTok), nhân sự chuyên nghiệp cần lưu ý điều gì?',
+    options: [
+      'Muốn đăng gì cũng được vì mạng xã hội là quyền tự do riêng tư tuyệt đối',
+      'Tuyệt đối không tiết lộ bí mật kinh doanh, không đăng tin đồn thất thiệt hoặc lời lẽ xúc phạm làm tổn hại uy tín thương hiệu công ty',
+      'Nên chụp lại các tài liệu họp nội bộ để khoe với bạn bè',
+      'Luôn nói xấu công ty cũ để chứng tỏ công ty hiện tại tốt hơn'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Phát ngôn trên mạng xã hội có thể liên đới trực tiếp đến hình ảnh doanh nghiệp và uy tín nghề nghiệp của chính cá nhân.',
+    relatedLessonId: 'lesson-10'
+  },
+  {
+    id: 'q-20',
+    topicId: 'topic-ethics-conflicts',
+    question: 'Khi phát hiện một đồng nghiệp vô tình để quên tài liệu mật chứa kế hoạch sa thải nhân sự trên máy in công cộng, cách xử lý đúng đắn nhất là:',
+    options: [
+      'Chụp ảnh lại gửi vào nhóm chat bạn bè để bàn tán',
+      'Cất tài liệu vào bìa hồ sơ kín, mang gửi tận tay đồng nghiệp đó hoặc quản lý nhân sự, nhắc nhở tế nhị và giữ kín thông tin',
+      'Vứt tài liệu vào thùng rác mở',
+      'Đọc to nội dung giữa văn phòng để mọi người cùng biết trước'
+    ],
+    correctAnswerIndex: 1,
+    explanation: 'Bảo quản cẩn thận và trả lại cho người có thẩm quyền thể hiện tính chính trực, lòng trung thực và sự thấu hiểu rủi ro bảo mật.',
+    relatedLessonId: 'lesson-10'
+  }
+];
+
+export const QUIZ_TOPICS: QuizTopic[] = [
+  {
+    id: 'topic-culture',
+    title: 'Văn hóa, Kỷ luật & Tác phong Công sở',
+    description: 'Kiểm tra hiểu biết về 3 tầng văn hóa, tính tự chịu trách nhiệm và tác phong thời gian, diện mạo.',
+    durationMinutes: 10,
+    questionIds: ['q-1', 'q-2', 'q-3', 'q-4', 'q-5']
+  },
+  {
+    id: 'topic-interpersonal',
+    title: 'Giao tiếp Cấp trên, Đồng nghiệp & Lắng nghe',
+    description: 'Kiểm tra kỹ năng báo cáo BLUF, mô hình phản hồi SBI và lắng nghe thấu cảm.',
+    durationMinutes: 10,
+    questionIds: ['q-6', 'q-7', 'q-8', 'q-9', 'q-10']
+  },
+  {
+    id: 'topic-communication-tools',
+    title: 'Thư tín Email, Cuộc họp & Đối ngoại',
+    description: 'Quy chuẩn email TO/CC/BCC, văn hóa hội họp văn minh và nghi thức đối ngoại tiếp khách.',
+    durationMinutes: 10,
+    questionIds: ['q-11', 'q-12', 'q-13', 'q-14', 'q-15']
+  },
+  {
+    id: 'topic-ethics-conflicts',
+    title: 'Giải quyết Xung đột, Đạo đức số & Bảo mật',
+    description: 'Mô hình Thomas-Kilmann, nguyên tắc bảo mật thông tin và ứng xử chuẩn mực trên mạng xã hội.',
+    durationMinutes: 10,
+    questionIds: ['q-16', 'q-17', 'q-18', 'q-19', 'q-20']
+  },
+  {
+    id: 'topic-comprehensive',
+    title: 'Bài thi Chứng chỉ Đánh giá Năng lực Toàn diện',
+    description: 'Bài kiểm tra chuẩn hóa tổng hợp toàn bộ 20 câu hỏi bao quát 10 lĩnh vực văn hóa và giao tiếp công sở.',
+    durationMinutes: 25,
+    questionIds: [
+      'q-1', 'q-2', 'q-3', 'q-4', 'q-5',
+      'q-6', 'q-7', 'q-8', 'q-9', 'q-10',
+      'q-11', 'q-12', 'q-13', 'q-14', 'q-15',
+      'q-16', 'q-17', 'q-18', 'q-19', 'q-20'
+    ]
+  }
+];
+
+export const INITIAL_BADGES: Badge[] = [
+  {
+    id: 'badge-starter',
+    name: 'Khởi đầu vững chắc',
+    description: 'Hoàn thành bài học đầu tiên trong chương trình đào tạo văn hóa công sở.',
+    icon: 'BookOpen',
+    category: 'learning',
+    requirement: 'Hoàn thành 1 bài học bất kỳ.'
+  },
+  {
+    id: 'badge-communicator',
+    name: 'Bậc thầy giao tiếp',
+    description: 'Hoàn thành xuất sắc các bài học và tình huống về kỹ năng giao tiếp và lắng nghe.',
+    icon: 'MessageSquareCheck',
+    category: 'mastery',
+    requirement: 'Hoàn thành ít nhất 4 bài học về giao tiếp và 3 tình huống thực tế.'
+  },
+  {
+    id: 'badge-champion',
+    name: 'Đại sứ văn hóa',
+    description: 'Hoàn thành toàn bộ 10 bài học trong giáo trình chuẩn mực văn hóa doanh nghiệp.',
+    icon: 'Award',
+    category: 'learning',
+    requirement: 'Đạt 100% tiến độ thư viện bài học (10/10 bài).'
+  },
+  {
+    id: 'badge-solver',
+    name: 'Chuyên gia xử lý tình huống',
+    description: 'Vượt qua ít nhất 5 tình huống thực hành với lựa chọn tối ưu nhất.',
+    icon: 'Sparkles',
+    category: 'practice',
+    requirement: 'Hoàn thành 5 tình huống thực tế.'
+  },
+  {
+    id: 'badge-perfect',
+    name: 'Điểm 10 tuyệt đối',
+    description: 'Đạt điểm số 100% trong ít nhất một bài kiểm tra trắc nghiệm.',
+    icon: 'Flame',
+    category: 'assessment',
+    requirement: 'Đạt điểm tối đa (100%) trong một bài thi bất kỳ.'
+  },
+  {
+    id: 'badge-scholar',
+    name: 'Chiến binh tri thức',
+    description: 'Tích lũy được trên 500 điểm kinh nghiệm (XP) qua các hoạt động học tập.',
+    icon: 'Trophy',
+    category: 'mastery',
+    requirement: 'Đạt tổng điểm từ 500 XP trở lên.',
+    pointsRequired: 500
+  }
+];
+
+export const INITIAL_LEADERBOARD: LeaderboardUser[] = [
+  {
+    id: 'user-lb-1',
+    name: 'Trần Thị Mai Phương',
+    department: 'Khối Quan hệ Khách hàng',
+    role: 'Trưởng nhóm Dịch vụ Khách hàng',
+    avatarSeed: 'mai_phuong',
+    points: 740,
+    completedLessonsCount: 10,
+    quizzesTakenCount: 5,
+    badgeCount: 6
+  },
+  {
+    id: 'user-lb-2',
+    name: 'Lê Hoàng Nam',
+    department: 'Khối Kỹ thuật & Công nghệ',
+    role: 'Kỹ sư Cấp cao',
+    avatarSeed: 'hoang_nam',
+    points: 620,
+    completedLessonsCount: 9,
+    quizzesTakenCount: 4,
+    badgeCount: 5
+  },
+  {
+    id: 'user-lb-3',
+    name: 'Phạm Thu Trang',
+    department: 'Phòng Nhân sự & Đào tạo',
+    role: 'Chuyên viên Nhân sự',
+    avatarSeed: 'thu_trang',
+    points: 580,
+    completedLessonsCount: 8,
+    quizzesTakenCount: 4,
+    badgeCount: 4
+  },
+  {
+    id: 'user-lb-4',
+    name: 'Vũ Đức Minh',
+    department: 'Khối Tài chính Kế toán',
+    role: 'Chuyên viên Phân tích',
+    avatarSeed: 'duc_minh',
+    points: 460,
+    completedLessonsCount: 7,
+    quizzesTakenCount: 3,
+    badgeCount: 4
+  },
+  {
+    id: 'user-lb-5',
+    name: 'Đặng Thùy Linh',
+    department: 'Khối Truyền thông & Thương hiệu',
+    role: 'Biên tập viên Nội dung',
+    avatarSeed: 'thuy_linh',
+    points: 390,
+    completedLessonsCount: 6,
+    quizzesTakenCount: 3,
+    badgeCount: 3
+  }
+];
